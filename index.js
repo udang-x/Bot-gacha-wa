@@ -2,9 +2,10 @@ const { default: makeWASocket, useMultiFileAuthState, DisconnectReason, Browsers
 const { createCanvas, loadImage } = require('@napi-rs/canvas');
 const fs = require('fs');
 
+// Nomor WhatsApp Bot Kamu
 const BOT_NUMBER = '6288808536697'; 
 
-// Render Kartu Gacha
+// Render Kartu Gacha pakai Canvas
 async function generateCard(charImgPath, name, series) {
     const canvas = createCanvas(400, 600);
     const ctx = canvas.getContext('2d');
@@ -32,23 +33,29 @@ async function generateCard(charImgPath, name, series) {
 }
 
 async function startBot() {
-    // Sesi baru session_v3 untuk reset pairing state
-    const { state, saveCreds } = await useMultiFileAuthState('session_v3');
+    // Sesi baru session_v4 untuk force pairing bersih
+    const { state, saveCreds } = await useMultiFileAuthState('session_v4');
     
     const sock = makeWASocket({
         auth: state,
         printQRInTerminal: false,
-        // Menyamar sebagai Chrome Desktop agar tidak ditolak server WhatsApp
-        browser: Browsers.ubuntu('Chrome') 
+        logger: require('pino')({ level: 'silent' }),
+        // Menyamar sebagai Chrome versi Ubuntu seperti script Rifza
+        browser: Browsers.ubuntu('Chrome'),
+        retryRequestDelayMs: 5000,
+        maxMsgRetryCount: 2,
+        syncFullHistory: false
     });
 
+    // Pemicu Kode Pairing Persis Trik Rifza
     if (!sock.authState.creds.registered) {
         setTimeout(async () => {
             try {
-                const code = await sock.requestPairingCode(BOT_NUMBER);
-                console.log(`\n===================================`);
-                console.log(`KODE PAIRING WA KAMU: ${code}`);
-                console.log(`===================================\n`);
+                let cleanNumber = BOT_NUMBER.replace(/[+ -]/g, '');
+                let code = await sock.requestPairingCode(cleanNumber, 'TERMAICC');
+                console.log(`\n  ╭────────────────────────────╮`);
+                console.log(`  │  Your Pairing Code: ${code}  │`);
+                console.log(`  ╰────────────────────────────╯\n`);
             } catch (err) {
                 console.log('Gagal meminta kode pairing:', err);
             }
@@ -99,4 +106,3 @@ async function startBot() {
 }
 
 startBot();
-

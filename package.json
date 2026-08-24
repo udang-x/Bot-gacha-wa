@@ -1,0 +1,14 @@
+{
+  "name": "bot-gacha-wa",
+  "version": "1.0.0",
+  "description": "Bot WhatsApp Gacha Kartu",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.52",
+    "@whiskeysockets/baileys": "^6.7.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}

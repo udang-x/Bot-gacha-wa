@@ -1,4 +1,4 @@
-const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys');
+const { default: makeWASocket, useMultiFileAuthState, DisconnectReason, Browsers } = require('@whiskeysockets/baileys');
 const { createCanvas, loadImage } = require('@napi-rs/canvas');
 const fs = require('fs');
 
@@ -32,12 +32,14 @@ async function generateCard(charImgPath, name, series) {
 }
 
 async function startBot() {
-    // Menggunakan folder session_v2 agar memicu ulang kode pairing
-    const { state, saveCreds } = await useMultiFileAuthState('session_v2');
+    // Sesi baru session_v3 untuk reset pairing state
+    const { state, saveCreds } = await useMultiFileAuthState('session_v3');
     
     const sock = makeWASocket({
         auth: state,
-        printQRInTerminal: false
+        printQRInTerminal: false,
+        // Menyamar sebagai Chrome Desktop agar tidak ditolak server WhatsApp
+        browser: Browsers.ubuntu('Chrome') 
     });
 
     if (!sock.authState.creds.registered) {
@@ -50,7 +52,7 @@ async function startBot() {
             } catch (err) {
                 console.log('Gagal meminta kode pairing:', err);
             }
-        }, 4000);
+        }, 3000);
     }
 
     sock.ev.on('creds.update', saveCreds);
@@ -97,4 +99,4 @@ async function startBot() {
 }
 
 startBot();
-                                                                                  
+

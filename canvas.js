@@ -37,8 +37,22 @@ async function renderCard(characterImageUrl, nameText, seriesText, rarity = 3) {
         offsetY = (canvasHeight - renderHeight) / 2;
     }
 
-    // 1. Gambar Karakter
+    // Background dasar hitam
+    ctx.fillStyle = '#111111';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    // 1. BATASI AREA GAMBAR (CLIPPING PATH)
+    // Tentukan margin/jarak aman di dalam bingkai agar gambar karakter tidak keluar jalur
+    ctx.save();
+    ctx.beginPath();
+    const margin = 16; // Sesuaikan ketebalan frame (bisa diatur 15-20 pixel)
+    ctx.rect(margin, margin, canvasWidth - (margin * 2), canvasHeight - (margin * 2));
+    ctx.clip();
+
+    // Gambar Karakter (hanya akan tampil di dalam area clipping)
     ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
+    
+    ctx.restore(); // Lepas klip agar frame bisa ditumpuk di atasnya
 
     // 2. Banner Dimmer Bawah
     const bannerGrad = ctx.createLinearGradient(0, 450, 0, canvasHeight);
@@ -48,7 +62,7 @@ async function renderCard(characterImageUrl, nameText, seriesText, rarity = 3) {
     ctx.fillStyle = bannerGrad;
     ctx.fillRect(0, 450, canvasWidth, 150);
 
-    // 3. Timpa Frame PNG Transparan
+    // 3. Timpa Frame PNG Transparan (Lapisan paling atas)
     const framePath = path.join(__dirname, 'assets', `frame_${rarity}star.png`);
     const defaultFrame = path.join(__dirname, 'assets', 'frame_5star.png');
 

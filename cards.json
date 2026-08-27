@@ -1,0 +1,16 @@
+[
+  {
+    "id": "c1",
+    "name": "Nian",
+    "series": "Arknights",
+    "rarity": 5,
+    "image": "./assets/char1.png"
+  },
+  {
+    "id": "c2",
+    "name": "Qingxiao",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "./assets/char2.png"
+  }
+]

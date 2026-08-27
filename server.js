@@ -7,6 +7,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// 👉 TAMBAHKAN BARIS INI (Supaya folder assets bisa diakses publik lewat internet)
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
 const PORT = process.env.PORT || 3000;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
 

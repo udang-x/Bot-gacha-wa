@@ -12,5 +12,40 @@
     "series": "Wuthering Waves",
     "rarity": 5,
     "image": "https://i.imgur.com/cdMbDLO.jpeg"
+  },
+  {
+    "id": "c3",
+    "name": "Male Rover",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/VfZ5ISQ.jpeg"
+  },
+  {
+    "id": "c4",
+    "name": "Female Rover",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/s57b32l.jpeg"
+  },
+  {
+    "id": "c5",
+    "name": "Yangyang",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/hkeJREU.jpeg"
+  },
+  {
+    "id": "c6",
+    "name": "Aemeath",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/229a28c8-b952-477b-a8ef-3d56c20988c7.jpeg"
+  },
+  {
+    "id": "c7",
+    "name": "Mornye",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/Pv5RkV6.jpeg"
   }
 ]

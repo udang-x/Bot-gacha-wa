@@ -48,4 +48,39 @@
     "rarity": 5,
     "image": "https://i.imgur.com/Pv5RkV6.jpeg"
   }
+  {
+    "id": "c8",
+    "name": "Raiden Shogun",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/T1K20Ep.jpeg"
+  },
+  {
+    "id": "c9",
+    "name": "Furina",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/dmO02T2.jpeg"
+  },
+  {
+    "id": "c10",
+    "name": "Zhongli",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/VyixABg.jpeg"
+  },
+  {
+    "id": "c11",
+    "name": "Nahida",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/sTjaVBN.jpeg"
+  },
+  {
+    "id": "c12",
+    "name": "Kaedahara Kazuha",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/v5K13gu.jpeg"
+  }
 ]

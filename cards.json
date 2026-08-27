@@ -4,13 +4,13 @@
     "name": "Nian",
     "series": "Arknights",
     "rarity": 5,
-    "image": "./assets/char1.png"
+    "image": "https://i.imgur.com/Nbc0aRu.jpeg"
   },
   {
     "id": "c2",
     "name": "Qingxiao",
     "series": "Wuthering Waves",
     "rarity": 5,
-    "image": "./assets/char2.png"
+    "image": "https://i.imgur.com/cdMbDLO.jpeg"
   }
 ]

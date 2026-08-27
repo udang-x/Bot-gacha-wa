@@ -1,17 +1,13 @@
 {
-  "name": "sakura-core",
+  "name": "gacha-backend",
   "version": "1.0.0",
-  "description": "WhatsApp Gacha Engine powered by Baileys & Firebase",
-  "main": "index.js",
+  "description": "Gacha Backend Server",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
-  "author": "Udang",
-  "license": "Udang-License-1.0",
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.52",
-    "@whiskeysockets/baileys": "^6.7.9",
-    "firebase-admin": "^13.0.0",
-    "pino": "^9.0.0"
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }

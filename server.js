@@ -1,4 +1,4 @@
-Const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
@@ -24,19 +24,20 @@ app.get('/api/cards', (req, res) => {
     res.json(cards);
 });
 
-// Endpoint Givecard dengan Validasi Owner Resmi yang Dikunci Kembali
+// Endpoint Givecard dengan Validasi Owner Resmi dan Dukungan LID Firebase
 app.post('/api/givecard', (req, res) => {
     const { senderNumber, targetUser, cardId } = req.body;
     
+    // Identitas resmi owner (nomor biasa dan LID Firebase)
+    const officialOwnerNumber = "6288808536697"; 
+    const officialOwnerLid = "178216010539209";
+
     // Membersihkan nomor pengirim dari simbol atau ekstensi WhatsApp
     const cleanSender = senderNumber ? String(senderNumber).replace(/[^0-9]/g, '') : '';
-    
-    // Nomor WhatsApp resmi milikmu sebagai Owner bot
-    const officialOwnerNumber = "6288808536697"; 
 
-    // 🛡️ VALIDASI KETAT: Jika nomor yang mengirim bukan nomor kamu, tolak mentah-mentah!
-    if (cleanSender !== officialOwnerNumber) {
-        console.log(`❌ DITOLAK: Nomor ${cleanSender} mencoba memakai givecard tapi bukan owner.`);
+    // 🛡️ VALIDASI KETAT: Cek apakah cocok dengan nomor atau LID owner
+    if (cleanSender !== officialOwnerNumber && cleanSender !== officialOwnerLid) {
+        console.log(`❌ DITOLAK: Nomor/LID ${cleanSender} mencoba memakai givecard tapi bukan owner.`);
         return res.status(403).json({ 
             success: false, 
             message: "❌ Akses ditolak! Perintah ini hanya bisa dipakai oleh Owner bot." 

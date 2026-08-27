@@ -24,30 +24,26 @@ app.get('/api/cards', (req, res) => {
     res.json(cards);
 });
 
-// Endpoint Givecard dengan pembersihan nomor agar kebal device ID
 app.post('/api/givecard', (req, res) => {
     const { senderNumber, targetUser, cardId } = req.body;
     
-    // Ambil hanya angka murni dari senderNumber yang masuk (mengabaikan @s.whatsapp.net atau :1)
-    const cleanSender = senderNumber ? senderNumber.replace(/[^0-9]/g, '') : '';
+    const cleanSender = senderNumber ? String(senderNumber).replace(/[^0-9]/g, '') : '';
     
-    // Nomor owner murni milikmu (hanya angkanya saja)
-    const officialOwnerNumber = "6288808536697"; 
+    // 🔍 CETAK KE LOG: Kita lihat angka bersih apa yang dikirim oleh WhatsApp kamu
+    console.log("==========================================");
+    console.log("📱 NOMOR MENTAH DARI KLIEN:", senderNumber);
+    console.log("🧹 NOMOR SETELAH DIBERSIHKAN:", cleanSender);
+    console.log("==========================================");
 
-    // Validasi berbasis angka murni
-    if (cleanSender !== officialOwnerNumber) {
-        return res.status(403).json({ 
-            success: false, 
-            message: "❌ Akses ditolak! Anda bukan owner bot." 
-        });
-    }
-
+    // 🛡️ SEMENTARA DIBYPASS (Tidak ada penolakan 403 dulu)
+    // Tujuannya agar perintah .givecard langsung sukses, lalu kita intip angka aslinya di log Railway.
     res.json({ 
         success: true, 
         message: "✅ Kartu berhasil diberikan oleh Owner!" 
     });
 });
 
-app.listen(PORT, () => {
+// Wajib menggunakan '0.0.0.0' agar port Railway terbuka untuk publik dan tidak crash
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });

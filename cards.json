@@ -83,4 +83,46 @@
     "rarity": 5,
     "image": "https://i.imgur.com/v5K13gu.jpeg"
   }
+  {
+    "id": "c13",
+    "name": "Robin",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/2OXWNmj.jpeg"
+  },
+  {
+    "id": "c14",
+    "name": "Hysilens",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/WqInwm3.jpeg"
+  },
+  {
+    "id": "c15",
+    "name": "Castorice",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/WDmKMzY.jpeg"
+  },
+  {
+    "id": "c16",
+    "name": "The Herta",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/EQ8Ano7.jpeg"
+  },
+  {
+    "id": "c17",
+    "name": "Firefly",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/7ToAJNj.jpeg"
+  },
+  {
+    "id": "c18",
+    "name": "Kafka",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/v6NSs1x.jpeg"
+  }
 ]

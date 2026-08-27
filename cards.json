@@ -168,5 +168,54 @@
     "series": "Zenless Zone Zero",
     "rarity": 5,
     "image": "https://i.imgur.com/ThyIcXY.jpeg"
+  },
+  {
+    "id": "c25",
+    "name": "Urawa Hanako",
+    "series": "Blue Archive",
+    "rarity": 5,
+    "image": "https://i.imgur.com/2ORhLRh.jpeg"
+  },
+  {
+    "id": "c26",
+    "name": "Misono Mika",
+    "series": "Blue Archive",
+    "rarity": 5,
+    "image": "https://i.imgur.com/TtmeOFC.jpeg"
+  },
+  {
+    "id": "c27",
+    "name": "Rossina Wulfperl Lupinno",
+    "series": "Arknights: Endfield",
+    "rarity": 5,
+    "image": "https://i.imgur.com/KEXn5GS.jpeg"
+  },
+  {
+    "id": "c28",
+    "name": "Yvonne",
+    "series": "Arknights: Endfield",
+    "rarity": 5,
+    "image": "https://i.imgur.com/rEvjV4G.jpeg"
+  },
+  {
+    "id": "c29",
+    "name": "Female Endministrator",
+    "series": "Arknights: Endfield",
+    "rarity": 5,
+    "image": "https://i.imgur.com/t1F24hb.jpeg"
+  },
+  {
+    "id": "c30",
+    "name": "Male Endministrator",
+    "series": "Arknights: Endfield",
+    "rarity": 5,
+    "image": "https://i.imgur.com/3RZ81XG.jpeg"
+  },
+  {
+    "id": "c31",
+    "name": "Cyrene",
+    "series": "Honkai: Star Rail",
+    "rarity": 5,
+    "image": "https://i.imgur.com/Xmd3q4u.jpeg"
   }
 ]

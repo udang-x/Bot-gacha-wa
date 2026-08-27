@@ -140,6 +140,33 @@
     "rarity": 5,
     "isVideo": true,
     "image": "https://imgur.com/lgRCUTe.mp4"
+  },
+  {
+    "id": "c21",
+    "name": "Kikuri Hiroi",
+    "series": "Bocchi the Rock",
+    "rarity": 5,
+    "image": "https://i.imgur.com/TtkBYAL.jpeg"
+  },
+  {
+    "id": "c22",
+    "name": "Suisui",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/3aMZ6VX.jpeg"
+  },
+  {
+    "id": "c23",
+    "name": "Vivian Banshee",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://i.imgur.com/UuBAHro.jpeg"
+  },
+  {
+    "id": "c24",
+    "name": "Hoshimi Miyabi",
+    "series": "Zenless Zone Zero",
+    "rarity": 5,
+    "image": "https://i.imgur.com/ThyIcXY.jpeg"
   }
-  
 ]

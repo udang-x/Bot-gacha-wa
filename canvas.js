@@ -19,6 +19,10 @@ async function renderCard(characterImageUrl, nameText, seriesText, rarity = 3) {
     const canvas = createCanvas(canvasWidth, canvasHeight);
     const ctx = canvas.getContext('2d');
 
+    // Background dasar hitam
+    ctx.fillStyle = '#111111';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
     const img = await loadImage(characterImageUrl);
     
     const imgRatio = img.width / img.height;
@@ -37,22 +41,21 @@ async function renderCard(characterImageUrl, nameText, seriesText, rarity = 3) {
         offsetY = (canvasHeight - renderHeight) / 2;
     }
 
-    // Background dasar hitam
-    ctx.fillStyle = '#111111';
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-    // 1. BATASI AREA GAMBAR (CLIPPING PATH)
-    // Tentukan margin/jarak aman di dalam bingkai agar gambar karakter tidak keluar jalur
+    // 1. BATASI AREA GAMBAR PAS DI DALAM KOTAK GARIS EMAS
     ctx.save();
     ctx.beginPath();
-    const margin = 16; // Sesuaikan ketebalan frame (bisa diatur 15-20 pixel)
-    ctx.rect(margin, margin, canvasWidth - (margin * 2), canvasHeight - (margin * 2));
+    
+    const marginX = 28;       // Jarak pinggir kiri & kanan dari tepi kanvas
+    const topMargin = 75;     // Jarak atas (berada di bawah bintang & garis atas frame)
+    const cardWidth = canvasWidth - (marginX * 2);
+    const cardHeight = 350;   // Tinggi area kotak karakter di dalam frame
+    
+    ctx.rect(marginX, topMargin, cardWidth, cardHeight);
     ctx.clip();
 
-    // Gambar Karakter (hanya akan tampil di dalam area clipping)
+    // Gambar Karakter di dalam kotak
     ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
-    
-    ctx.restore(); // Lepas klip agar frame bisa ditumpuk di atasnya
+    ctx.restore();
 
     // 2. Banner Dimmer Bawah
     const bannerGrad = ctx.createLinearGradient(0, 450, 0, canvasHeight);
@@ -91,3 +94,4 @@ async function renderCard(characterImageUrl, nameText, seriesText, rarity = 3) {
 }
 
 module.exports = { renderCard };
+                 

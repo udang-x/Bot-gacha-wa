@@ -217,5 +217,37 @@
     "series": "Honkai: Star Rail",
     "rarity": 5,
     "image": "https://i.imgur.com/tFxOnrQ.jpeg"
-  }
+  },
+  {
+    "id": "c32",
+    "name": "Furina Sp",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/vUAVaZf.mp4"
+  },
+  {
+    "id": "c33",
+    "name": "Hoshimi Miyabi Sp",
+    "series": "Zenless Zone Zero",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/CgiVUuV.mp4"
+  },
+  {
+    "id": "c34",
+    "name": "Fleurdelys Sp",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/GVhZN3C.mp4"
+  },
+  {
+    "id": "c35",
+    "name": "Kuchiba Chisa Sp",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/mQYKVPs.mp4"
+  }  
 ]

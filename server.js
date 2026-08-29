@@ -7,6 +7,21 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// 🔒 Kunci Rahasia API & Password Khusus Owner
+const API_SECRET = "KunciRahasiaBotGacha123";
+const SECRET_OWNER_TOKEN = "OwnerSuperSecretPasscode999";
+
+// Middleware Proteksi Header (Menolak request tanpa API Key rahasia)
+app.use((req, res, next) => {
+    if (req.path === '/') return next(); // Biarkan halaman utama terakses publik
+    
+    const clientKey = req.headers['x-api-key'];
+    if (clientKey !== API_SECRET) {
+        return res.status(401).json({ success: false, message: 'Unauthorized: Akses ditolak!' });
+    }
+    next();
+});
+
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 const PORT = process.env.PORT || 3000;
@@ -103,20 +118,20 @@ app.post('/api/gacha', (req, res) => {
     });
 });
 
-// Endpoint Givecard dengan Validasi Owner Resmi dan Dukungan LID Firebase
+// 🎁 ENDPOINT GIVECARD AMAN (Validasi Ganda: Nomor/LID Owner + Passcode Khusus)
 app.post('/api/givecard', (req, res) => {
-    const { senderNumber, targetUser, cardId } = req.body;
+    const { senderNumber, targetUser, cardId, ownerToken } = req.body;
     
     const officialOwnerNumber = "6288808536697"; 
     const officialOwnerLid = "178216010539209";
 
     const cleanSender = senderNumber ? String(senderNumber).replace(/[^0-9]/g, '') : '';
 
-    if (cleanSender !== officialOwnerNumber && cleanSender !== officialOwnerLid) {
-        console.log(`❌ DITOLAK: Nomor/LID ${cleanSender} mencoba memakai givecard tapi bukan owner.`);
+    if ((cleanSender !== officialOwnerNumber && cleanSender !== officialOwnerLid) || ownerToken !== SECRET_OWNER_TOKEN) {
+        console.log(`❌ DITOLAK: Nomor/LID ${cleanSender} atau token tidak valid mencoba memakai givecard.`);
         return res.status(403).json({ 
             success: false, 
-            message: "❌ Akses ditolak! Perintah ini hanya bisa dipakai oleh Owner bot." 
+            message: "❌ Akses ditolak! Kredensial Owner tidak valid." 
         });
     }
 
@@ -130,4 +145,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
-                    
+                

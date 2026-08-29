@@ -11,6 +11,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 const PORT = process.env.PORT || 3000;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
+const FRAMES_PATH = path.join(__dirname, 'frames.json');
 
 // Fungsi pembantu untuk membuat kode unik acak
 function generateUniqueCode(length = 6) {
@@ -32,6 +33,15 @@ app.get('/api/cards', (req, res) => {
     }
     const cards = JSON.parse(fs.readFileSync(CARDS_PATH, 'utf8'));
     res.json(cards);
+});
+
+// 🖼️ ENDPOINT DEDIKASI FRAME (Membaca frames.json)
+app.get('/api/frames', (req, res) => {
+    if (!fs.existsSync(FRAMES_PATH)) {
+        return res.status(404).json({ error: 'Frames database not found on server.' });
+    }
+    const frames = JSON.parse(fs.readFileSync(FRAMES_PATH, 'utf8'));
+    res.json(frames);
 });
 
 // 🎲 ENDPOINT GACHA PUSAT (Sistem Akal-Akalan Rarity Dinamis & Drop 2 Pilihan)
@@ -120,3 +130,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
+                    

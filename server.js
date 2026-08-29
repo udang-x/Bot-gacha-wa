@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const { initializeApp } = require('firebase/app');
-const { getDatabase, ref, get, set } = require('firebase/database');
 
 const app = express();
 app.use(express.json());
@@ -12,25 +10,6 @@ app.use(cors());
 // 🔒 Kunci Rahasia API & Password Khusus Owner
 const API_SECRET = "KunciRahasiaBotGacha123";
 const SECRET_OWNER_TOKEN = "OwnerSuperSecretPasscode999";
-
-// Konfigurasi Firebase Server
-const firebaseConfig = {
-    apiKey: "AIzaSyAtQKaaR8Lkwt-tzUyva5FJ0tKUEe3I3ak",
-    authDomain: "bot-wa-74e7c.firebaseapp.com",
-    databaseURL: "https://bot-wa-74e7c-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "bot-wa-74e7c",
-    storageBucket: "bot-wa-74e7c.firebasestorage.app",
-    messagingSenderId: "122904330675",
-    appId: "1:122904330675:web:b29d5560491e07d4630bc6",
-    measurementId: "G-69QZNB30BY"
-};
-
-const appFb = initializeApp(firebaseConfig);
-const db = getDatabase(appFb);
-
-function sanitizeKey(jid) {
-    return jid ? String(jid).replace(/[^a-zA-Z0-9]/g, '_') : 'unknown';
-}
 
 // Middleware Proteksi Header (Menolak request tanpa API Key rahasia)
 app.use((req, res, next) => {
@@ -80,42 +59,8 @@ app.get('/api/frames', (req, res) => {
     res.json(frames);
 });
 
-// 👤 ENDPOINT AMBIL DATA USER (Jembatan Database Bot Lokal)
-app.post('/api/user', async (req, res) => {
-    const { userId } = req.body;
-    if (!userId) return res.status(400).json({ success: false, message: 'User ID diperlukan!' });
-
-    const cleanId = sanitizeKey(userId);
-    const userRef = ref(db, 'users/' + cleanId);
-    const snapshot = await get(userRef);
-
-    let userData = snapshot.exists() ? snapshot.val() : { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
-    if (!userData.cards) userData.cards = [];
-    if (userData.lastGacha === undefined) userData.lastGacha = 0;
-    if (userData.limit === undefined) userData.limit = 5;
-
-    res.json({ success: true, user: userData });
-});
-
-// 🔄 ENDPOINT UPDATE DATA USER (Jembatan Database Bot Lokal)
-app.post('/api/user/update', async (req, res) => {
-    const { userId, data } = req.body;
-    if (!userId || !data) return res.status(400).json({ success: false, message: 'Data tidak lengkap!' });
-
-    const cleanId = sanitizeKey(userId);
-    const userRef = ref(db, 'users/' + cleanId);
-    await set(userRef, data);
-
-    res.json({ success: true, message: 'Data user berhasil diperbarui!' });
-});
-
-// 🎲 ENDPOINT GACHA PUSAT (VALIDASI LIMIT, COOLDOWN 2 JAM, & FIREBASE SERVER)
-app.post('/api/gacha', async (req, res) => {
-    const { userId } = req.body;
-    if (!userId) {
-        return res.status(400).json({ success: false, message: 'User ID diperlukan!' });
-    }
-
+// 🎲 ENDPOINT GACHA PUSAT (Sistem Akal-Akalan Rarity Dinamis & Drop 2 Pilihan)
+app.post('/api/gacha', (req, res) => {
     if (!fs.existsSync(CARDS_PATH)) {
         return res.status(404).json({ success: false, message: 'Cards database not found' });
     }
@@ -125,58 +70,32 @@ app.post('/api/gacha', async (req, res) => {
         return res.status(500).json({ success: false, message: 'Database kartu kosong' });
     }
 
-    // --- TARIK DATA & CEK STATUS USER KE FIREBASE ---
-    const cleanId = sanitizeKey(userId);
-    const userRef = ref(db, 'users/' + cleanId);
-    const snapshot = await get(userRef);
-    
-    let userData = snapshot.exists() ? snapshot.val() : { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
-    if (userData.lastGacha === undefined) userData.lastGacha = 0;
-    if (userData.limit === undefined) userData.limit = 5;
-
-    // 1. Validasi Tiket Habis
-    if (userData.limit <= 0) {
-        return res.status(400).json({
-            success: false,
-            message: '❌ Tiket habis! Ketik `.daily` untuk klaim tiket harian.'
-        });
-    }
-
-    // 2. Validasi Cooldown 2 Jam
-    const cooldownTime = 2 * 60 * 60 * 1000; // 2 Jam dalam milidetik
-    const now = Date.now();
-
-    if (now - userData.lastGacha < cooldownTime) {
-        const timeLeft = (userData.lastGacha + cooldownTime) - now;
-        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        return res.status(429).json({
-            success: false,
-            cooldown: true,
-            message: `⏳ Kamu masih dalam masa cooldown! Tunggu ${hours} jam ${minutes} menit ${seconds} detik lagi.`
-        });
-    }
-
-    // --- KUNCI COOLDOWN & KURANGI TIKET DI SERVER SEBELUM GACHA DIKERJAKAN ---
-    userData.lastGacha = now;
-    userData.limit -= 1;
-    await set(userRef, userData);
-
     const rollCard = () => {
+        // 1. Pilih karakter acak dari database
         const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
+        
+        // 2. Tentukan Rarity secara dinamis
         let assignedRarity = 5;
 
+        // Jika kartu bukan video (gambar statis), acak bintang 3, 4, atau 5
         if (!randomCard.isVideo) {
             const rand = Math.random() * 100;
-            if (rand <= 10) assignedRarity = 5;
-            else if (rand <= 40) assignedRarity = 4;
-            else assignedRarity = 3;
+            if (rand <= 10) {
+                assignedRarity = 5;       // 10% rate bintang 5
+            } else if (rand <= 40) {
+                assignedRarity = 4;       // 30% rate bintang 4
+            } else {
+                assignedRarity = 3;       // 60% rate bintang 3
+            }
         }
 
         const printNumber = Math.floor(1000 + Math.random() * 9000);
-        const finalCard = { ...randomCard, rarity: assignedRarity };
+        
+        // Buat objek kartu hasil gabungan dengan rarity dinamis
+        const finalCard = {
+            ...randomCard,
+            rarity: assignedRarity
+        };
 
         return {
             card: finalCard,
@@ -189,6 +108,7 @@ app.post('/api/gacha', async (req, res) => {
         };
     };
 
+    // Ambil 2 kartu sekaligus untuk sistem pilihan (drop 2)
     const drop1 = rollCard();
     const drop2 = rollCard();
 
@@ -225,4 +145,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
-         

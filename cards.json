@@ -3,126 +3,108 @@
     "id": "c1",
     "name": "Nian",
     "series": "Arknights",
-    "rarity": 5,
     "image": "https://i.imgur.com/2BddOy4.jpeg"
   },
   {
     "id": "c2",
     "name": "Qingxiao",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/vjInLP8.jpeg"
   },
   {
     "id": "c3",
     "name": "Male Rover",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/VfZ5ISQ.jpeg"
   },
   {
     "id": "c4",
     "name": "Female Rover",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/s57b32l.jpeg"
   },
   {
     "id": "c5",
     "name": "Yangyang: Xuanling",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/hkeJREU.jpeg"
   },
   {
     "id": "c6",
     "name": "Aemeath",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/jtNFdcG.jpeg"
   },
   {
     "id": "c7",
     "name": "Mornye",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/Pv5RkV6.jpeg"
   },
   {
     "id": "c8",
     "name": "Raiden Shogun",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/T1K20Ep.jpeg"
   },
   {
     "id": "c9",
     "name": "Furina",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/8sCfpno.jpeg"
   },
   {
     "id": "c10",
     "name": "Zhongli",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/VyixABg.jpeg"
   },
   {
     "id": "c11",
     "name": "Nahida",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/sTjaVBN.jpeg"
   },
   {
     "id": "c12",
     "name": "Kaedahara Kazuha",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/v5K13gu.jpeg"
   },
   {
     "id": "c13",
     "name": "Robin",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/JvvxSZc.jpeg"
   },
   {
     "id": "c14",
     "name": "Hysilens",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/WqInwm3.jpeg"
   },
   {
     "id": "c15",
     "name": "Castorice",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/WDmKMzY.jpeg"
   },
   {
     "id": "c16",
     "name": "The Herta",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/EQ8Ano7.jpeg"
   },
   {
     "id": "c17",
     "name": "Firefly",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/7ToAJNj.jpeg"
   },
   {
     "id": "c18",
     "name": "Kafka",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/v6NSs1x.jpeg"
   },
   {
@@ -145,77 +127,66 @@
     "id": "c21",
     "name": "Kikuri Hiroi",
     "series": "Bocchi the Rock",
-    "rarity": 5,
     "image": "https://i.imgur.com/TtkBYAL.jpeg"
   },
   {
     "id": "c22",
     "name": "Suisui",
     "series": "Wuthering Waves",
-    "rarity": 5,
     "image": "https://i.imgur.com/HU9opGF.jpeg"
   },
   {
     "id": "c23",
     "name": "Vivian Banshee",
     "series": "Zenless Zone Zero",
-    "rarity": 5,
     "image": "https://i.imgur.com/voaYbQS.jpeg"
   },
   {
     "id": "c24",
     "name": "Hoshimi Miyabi",
     "series": "Zenless Zone Zero",
-    "rarity": 5,
     "image": "https://i.imgur.com/ThyIcXY.jpeg"
   },
   {
     "id": "c25",
     "name": "Urawa Hanako",
     "series": "Blue Archive",
-    "rarity": 5,
     "image": "https://i.imgur.com/2ORhLRh.jpeg"
   },
   {
     "id": "c26",
     "name": "Misono Mika",
     "series": "Blue Archive",
-    "rarity": 5,
     "image": "https://i.imgur.com/TtmeOFC.jpeg"
   },
   {
     "id": "c27",
     "name": "Rossina Wulfperl Lupinno",
     "series": "Arknights: Endfield",
-    "rarity": 5,
     "image": "https://i.imgur.com/DgQzFGB.jpeg"
   },
   {
     "id": "c28",
     "name": "Yvonne",
     "series": "Arknights: Endfield",
-    "rarity": 5,
     "image": "https://i.imgur.com/6dzYrnJ.jpeg"
   },
   {
     "id": "c29",
     "name": "Female Endministrator",
     "series": "Arknights: Endfield",
-    "rarity": 5,
     "image": "https://i.imgur.com/t1F24hb.jpeg"
   },
   {
     "id": "c30",
     "name": "Male Endministrator",
     "series": "Arknights: Endfield",
-    "rarity": 5,
     "image": "https://i.imgur.com/YMAXU88.jpeg"
   },
   {
     "id": "c31",
     "name": "Cyrene",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
     "image": "https://i.imgur.com/tFxOnrQ.jpeg"
   },
   {
@@ -251,105 +222,91 @@
     "image": "https://i.imgur.com/mQYKVPs.mp4"
   },
   {
-    "id": "c35",
+    "id": "c36",
     "name": "Caelus",
     "series": "Honkai: Star Rail",
-    "rarity": 4,
     "image": "https://i.imgur.com/ebKoD4s.jpeg"
   },
   {
-    "id": "c36",
+    "id": "c37",
     "name": "Stelle",
     "series": "Honkai: Star Rail",
-    "rarity": 4,
     "image": "https://i.imgur.com/gmfnqWk.jpeg"
   },
   {
-    "id": "c37",
+    "id": "c38",
     "name": "Elaina",
     "series": "Wandering Witch",
-    "rarity": 5,
     "image": "https://i.imgur.com/EZY3kRA.jpeg"
   },
   {
-    "id": "c38",
+    "id": "c39",
     "name": "Sunaookami Shiroko",
     "series": "Blue Archive",
-    "rarity": 5,
     "image": "https://i.imgur.com/BWekOue.jpeg"
   },
   {
-    "id": "c39",
+    "id": "c40",
     "name": "Kuchiba Chisa C",
     "series": "Original",
-    "rarity": 3,
     "image": "https://i.imgur.com/xzLhIvH.jpeg"
   },
   {
-    "id": "c40",
+    "id": "c41",
     "name": "Kuchiba Chisa",
     "series": "Original",
-    "rarity": 4,
     "image": "https://i.imgur.com/8gG2iVv.jpeg"
   },
   {
-    "id": "c41",
+    "id": "c42",
     "name": "Ryomen Sukuna",
     "series": "Jujutsu Kaisen",
-    "rarity": 5,
     "image": "https://i.imgur.com/CWBNfEL.jpeg"
   },
   {
-    "id": "c42",
+    "id": "c43",
     "name": "Satoru Gojo",
     "series": "Jujutsu Kaisen",
-    "rarity": 5,
     "image": "https://i.imgur.com/ShlFlQI.jpeg"
   },
   {
-    "id": "c43",
+    "id": "c44",
     "name": "Itadori Yuji",
     "series": "Jujutsu Kaisen",
-    "rarity": 4,
     "image": "https://i.imgur.com/DXEn0FP.jpeg"
   },
   {
-    "id": "c44",
+    "id": "c45",
     "name": "Fushiguro Megumi",
     "series": "Jujutsu Kaisen",
-    "rarity": 4,
     "image": "https://i.imgur.com/RXSAOhI.jpeg"
   },
   {
-    "id": "c45",
+    "id": "c46",
     "name": "Eight-Handled Sword Divergent Sila Divine General Mahoraga",
     "series": "Jujutsu Kaisen",
-    "rarity": 5,
     "image": "https://i.imgur.com/REcVkey.jpeg"
   },
   {
-    "id": "c46",
+    "id": "c47",
     "name": "Frieren",
     "series": "Frieren: Beyond Journey's End",
-    "rarity": 5,
     "image": "https://i.imgur.com/dKwqQbN.jpeg"
   },
   {
-    "id": "c47",
+    "id": "c48",
     "name": "Sandrone",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/Z7ARs5c.jpeg"
   },
   {
-    "id": "c48",
+    "id": "c49",
     "name": "Columbina",
     "series": "Genshin Impact",
-    "rarity": 5,
     "image": "https://i.imgur.com/vGgSGNH.jpeg"
   },
   {
-    "id": "c49",
+    "id": "c50",
     "name": "Elaina Sp",
     "series": "Wandering Witch",
     "rarity": 5,
@@ -357,7 +314,7 @@
     "image": "https://i.imgur.com/opGLw3K.mp4"
   },
   {
-    "id": "c50",
+    "id": "c51",
     "name": "Himmel & Frieren Sp",
     "series": "Frieren: Beyond Journey's End",
     "rarity": 5,
@@ -365,7 +322,7 @@
     "image": "https://i.imgur.com/S66rIpN.mp4"
   },
   {
-    "id": "c51",
+    "id": "c52",
     "name": "Frieren Sp",
     "series": "Frieren: Beyond Journey's End",
     "rarity": 5,
@@ -373,11 +330,11 @@
     "image": "https://i.imgur.com/nxPsZ05.mp4"
   },
   {
-    "id": "c52",
+    "id": "c53",
     "name": "Columbina Sp",
     "series": "Genshin Impact",
     "rarity": 5,
     "isVideo": true,
     "image": "https://i.imgur.com/rgZ2rSo.mp4"
   }
-]
+    ]

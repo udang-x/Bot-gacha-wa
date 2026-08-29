@@ -34,7 +34,7 @@ app.get('/api/cards', (req, res) => {
     res.json(cards);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Mengembalikan 2 pilihan kartu sekaligus)
+// 🎲 ENDPOINT GACHA PUSAT (Sistem Akal-Akalan Rarity Dinamis & Drop 2 Pilihan)
 app.post('/api/gacha', (req, res) => {
     if (!fs.existsSync(CARDS_PATH)) {
         return res.status(404).json({ success: false, message: 'Cards database not found' });
@@ -45,28 +45,37 @@ app.post('/api/gacha', (req, res) => {
         return res.status(500).json({ success: false, message: 'Database kartu kosong' });
     }
 
-    // Fungsi helper untuk meroll 1 kartu berdasarkan rate aman
     const rollCard = () => {
-        const rand = Math.random() * 100;
-        let targetRarity = 3; 
-        if (rand <= 10) {
-            targetRarity = 5;       
-        } else if (rand <= 40) {
-            targetRarity = 4;       
+        // 1. Pilih karakter acak dari database
+        const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
+        
+        // 2. Tentukan Rarity secara dinamis
+        let assignedRarity = 5;
+
+        // Jika kartu bukan video (gambar statis), acak bintang 3, 4, atau 5
+        if (!randomCard.isVideo) {
+            const rand = Math.random() * 100;
+            if (rand <= 10) {
+                assignedRarity = 5;       // 10% rate bintang 5
+            } else if (rand <= 40) {
+                assignedRarity = 4;       // 30% rate bintang 4
+            } else {
+                assignedRarity = 3;       // 60% rate bintang 3
+            }
         }
 
-        let availableCards = cardsDB.filter(c => (c.rarity || 3) === targetRarity);
-        if (availableCards.length === 0) {
-            availableCards = cardsDB;
-        }
-
-        const randomCard = availableCards[Math.floor(Math.random() * availableCards.length)];
         const printNumber = Math.floor(1000 + Math.random() * 9000);
         
+        // Buat objek kartu hasil gabungan dengan rarity dinamis
+        const finalCard = {
+            ...randomCard,
+            rarity: assignedRarity
+        };
+
         return {
-            card: randomCard,
+            card: finalCard,
             acquired: {
-                cardId: randomCard.id,
+                cardId: randomCard.isVideo ? randomCard.id : `${randomCard.id}_${assignedRarity}`,
                 print: printNumber,
                 code: generateUniqueCode(6),
                 obtainedAt: Date.now()

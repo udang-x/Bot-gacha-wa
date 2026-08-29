@@ -80,7 +80,7 @@ app.get('/api/frames', (req, res) => {
     res.json(frames);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT DENGAN COOLDOWN 2 JAM DI SERVER FIREBASE
+// 🎲 ENDPOINT GACHA PUSAT (VALIDASI LIMIT, COOLDOWN 2 JAM, & FIREBASE SERVER)
 app.post('/api/gacha', async (req, res) => {
     const { userId } = req.body;
     if (!userId) {
@@ -96,14 +96,24 @@ app.post('/api/gacha', async (req, res) => {
         return res.status(500).json({ success: false, message: 'Database kartu kosong' });
     }
 
-    // --- CEK COOLDOWN KE DATABASE FIREBASE SERVER ---
+    // --- TARIK DATA & CEK STATUS USER KE FIREBASE ---
     const cleanId = sanitizeKey(userId);
     const userRef = ref(db, 'users/' + cleanId);
     const snapshot = await get(userRef);
     
     let userData = snapshot.exists() ? snapshot.val() : { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
     if (userData.lastGacha === undefined) userData.lastGacha = 0;
+    if (userData.limit === undefined) userData.limit = 5;
 
+    // 1. Validasi Tiket Habis
+    if (userData.limit <= 0) {
+        return res.status(400).json({
+            success: false,
+            message: '❌ Tiket habis! Ketik `.daily` untuk klaim tiket harian.'
+        });
+    }
+
+    // 2. Validasi Cooldown 2 Jam
     const cooldownTime = 2 * 60 * 60 * 1000; // 2 Jam dalam milidetik
     const now = Date.now();
 
@@ -120,8 +130,9 @@ app.post('/api/gacha', async (req, res) => {
         });
     }
 
-    // --- KUNCI COOLDOWN LANGSUNG DI SERVER SEBELUM GACHA DIKERJAKAN ---
+    // --- KUNCI COOLDOWN & KURANGI TIKET DI SERVER SEBELUM GACHA DIKERJAKAN ---
     userData.lastGacha = now;
+    userData.limit -= 1;
     await set(userRef, userData);
 
     const rollCard = () => {
@@ -185,4 +196,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
-                          

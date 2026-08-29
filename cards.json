@@ -249,5 +249,135 @@
     "rarity": 5,
     "isVideo": true,
     "image": "https://i.imgur.com/mQYKVPs.mp4"
-  }  
+  },
+  {
+    "id": "c35",
+    "name": "Caelus",
+    "series": "Honkai: Star Rail",
+    "rarity": 4,
+    "image": "https://i.imgur.com/ebKoD4s.jpeg"
+  },
+  {
+    "id": "c36",
+    "name": "Stelle",
+    "series": "Honkai: Star Rail",
+    "rarity": 4,
+    "image": "https://i.imgur.com/gmfnqWk.jpeg"
+  },
+  {
+    "id": "c37",
+    "name": "Elaina",
+    "series": "Wandering Witch",
+    "rarity": 5,
+    "image": "https://i.imgur.com/EZY3kRA.jpeg"
+  },
+  {
+    "id": "c38",
+    "name": "Sunaookami Shiroko",
+    "series": "Blue Archive",
+    "rarity": 5,
+    "image": "https://i.imgur.com/BWekOue.jpeg"
+  },
+  {
+    "id": "c39",
+    "name": "Kuchiba Chisa C",
+    "series": "Original",
+    "rarity": 3,
+    "image": "https://i.imgur.com/xzLhIvH.jpeg"
+  },
+  {
+    "id": "c40",
+    "name": "Kuchiba Chisa",
+    "series": "Original",
+    "rarity": 4,
+    "image": "https://i.imgur.com/8gG2iVv.jpeg"
+  },
+  {
+    "id": "c41",
+    "name": "Ryomen Sukuna",
+    "series": "Jujutsu Kaisen",
+    "rarity": 5,
+    "image": "https://i.imgur.com/CWBNfEL.jpeg"
+  },
+  {
+    "id": "c42",
+    "name": "Satoru Gojo",
+    "series": "Jujutsu Kaisen",
+    "rarity": 5,
+    "image": "https://i.imgur.com/ShlFlQI.jpeg"
+  },
+  {
+    "id": "c43",
+    "name": "Itadori Yuji",
+    "series": "Jujutsu Kaisen",
+    "rarity": 4,
+    "image": "https://i.imgur.com/DXEn0FP.jpeg"
+  },
+  {
+    "id": "c44",
+    "name": "Fushiguro Megumi",
+    "series": "Jujutsu Kaisen",
+    "rarity": 4,
+    "image": "https://i.imgur.com/RXSAOhI.jpeg"
+  },
+  {
+    "id": "c45",
+    "name": "Eight-Handled Sword Divergent Sila Divine General Mahoraga",
+    "series": "Jujutsu Kaisen",
+    "rarity": 5,
+    "image": "https://i.imgur.com/REcVkey.jpeg"
+  },
+  {
+    "id": "c46",
+    "name": "Frieren",
+    "series": "Frieren: Beyond Journey's End",
+    "rarity": 5,
+    "image": "https://i.imgur.com/dKwqQbN.jpeg"
+  },
+  {
+    "id": "c47",
+    "name": "Sandrone",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/Z7ARs5c.jpeg"
+  },
+  {
+    "id": "c48",
+    "name": "Columbina",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "image": "https://i.imgur.com/vGgSGNH.jpeg"
+  },
+  {
+    "id": "c49",
+    "name": "Elaina Sp",
+    "series": "Wandering Witch",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/opGLw3K.mp4"
+  },
+  {
+    "id": "c50",
+    "name": "Himmel & Frieren Sp",
+    "series": "Frieren: Beyond Journey's End",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/S66rIpN.mp4"
+  },
+  {
+    "id": "c51",
+    "name": "Frieren Sp",
+    "series": "Frieren: Beyond Journey's End",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/nxPsZ05.mp4"
+  },
+  {
+    "id": "c52",
+    "name": "Columbina Sp",
+    "series": "Genshin Impact",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://i.imgur.com/rgZ2rSo.mp4"
+  }
 ]

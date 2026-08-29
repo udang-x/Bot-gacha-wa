@@ -34,7 +34,7 @@ app.get('/api/cards', (req, res) => {
     res.json(cards);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Rate aman terkunci di server)
+// 🎲 ENDPOINT GACHA PUSAT (Mengembalikan 2 pilihan kartu sekaligus)
 app.post('/api/gacha', (req, res) => {
     if (!fs.existsSync(CARDS_PATH)) {
         return res.status(404).json({ success: false, message: 'Cards database not found' });
@@ -45,37 +45,42 @@ app.post('/api/gacha', (req, res) => {
         return res.status(500).json({ success: false, message: 'Database kartu kosong' });
     }
 
-    // Atur peluang rate bintang di sini (aman dari kecurangan client)
-    const rand = Math.random() * 100;
-    let targetRarity = 3; // Default Common
-    if (rand <= 10) {
-        targetRarity = 5;       // 10% Legendary (Bintang 5)
-    } else if (rand <= 40) {
-        targetRarity = 4;       // 30% Epic (Bintang 4)
-    }                           // Sisanya 60% Bintang 3
+    // Fungsi helper untuk meroll 1 kartu berdasarkan rate aman
+    const rollCard = () => {
+        const rand = Math.random() * 100;
+        let targetRarity = 3; 
+        if (rand <= 10) {
+            targetRarity = 5;       
+        } else if (rand <= 40) {
+            targetRarity = 4;       
+        }
 
-    // Filter kartu berdasarkan rarity target
-    let availableCards = cardsDB.filter(c => (c.rarity || 3) === targetRarity);
-    
-    // Fallback jika kategori rarity tersebut kosong di JSON
-    if (availableCards.length === 0) {
-        availableCards = cardsDB;
-    }
+        let availableCards = cardsDB.filter(c => (c.rarity || 3) === targetRarity);
+        if (availableCards.length === 0) {
+            availableCards = cardsDB;
+        }
 
-    const randomCard = availableCards[Math.floor(Math.random() * availableCards.length)];
-    const printNumber = Math.floor(1000 + Math.random() * 9000);
-    
-    const acquiredCard = {
-        cardId: randomCard.id,
-        print: printNumber,
-        code: generateUniqueCode(6),
-        obtainedAt: Date.now()
+        const randomCard = availableCards[Math.floor(Math.random() * availableCards.length)];
+        const printNumber = Math.floor(1000 + Math.random() * 9000);
+        
+        return {
+            card: randomCard,
+            acquired: {
+                cardId: randomCard.id,
+                print: printNumber,
+                code: generateUniqueCode(6),
+                obtainedAt: Date.now()
+            }
+        };
     };
+
+    // Ambil 2 kartu sekaligus untuk sistem pilihan (drop 2)
+    const drop1 = rollCard();
+    const drop2 = rollCard();
 
     res.json({
         success: true,
-        card: randomCard,
-        acquired: acquiredCard
+        choices: [drop1, drop2]
     });
 });
 
@@ -106,4 +111,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
-        

@@ -80,6 +80,35 @@ app.get('/api/frames', (req, res) => {
     res.json(frames);
 });
 
+// 👤 ENDPOINT AMBIL DATA USER (Jembatan Database Bot Lokal)
+app.post('/api/user', async (req, res) => {
+    const { userId } = req.body;
+    if (!userId) return res.status(400).json({ success: false, message: 'User ID diperlukan!' });
+
+    const cleanId = sanitizeKey(userId);
+    const userRef = ref(db, 'users/' + cleanId);
+    const snapshot = await get(userRef);
+
+    let userData = snapshot.exists() ? snapshot.val() : { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
+    if (!userData.cards) userData.cards = [];
+    if (userData.lastGacha === undefined) userData.lastGacha = 0;
+    if (userData.limit === undefined) userData.limit = 5;
+
+    res.json({ success: true, user: userData });
+});
+
+// 🔄 ENDPOINT UPDATE DATA USER (Jembatan Database Bot Lokal)
+app.post('/api/user/update', async (req, res) => {
+    const { userId, data } = req.body;
+    if (!userId || !data) return res.status(400).json({ success: false, message: 'Data tidak lengkap!' });
+
+    const cleanId = sanitizeKey(userId);
+    const userRef = ref(db, 'users/' + cleanId);
+    await set(userRef, data);
+
+    res.json({ success: true, message: 'Data user berhasil diperbarui!' });
+});
+
 // 🎲 ENDPOINT GACHA PUSAT (VALIDASI LIMIT, COOLDOWN 2 JAM, & FIREBASE SERVER)
 app.post('/api/gacha', async (req, res) => {
     const { userId } = req.body;
@@ -196,3 +225,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
+         

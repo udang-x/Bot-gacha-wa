@@ -90,7 +90,15 @@ app.get('/api/frames', (req, res) => {
         return res.status(404).json({ error: 'Frames database not found on server.' });
     }
     const frames = JSON.parse(fs.readFileSync(FRAMES_PATH, 'utf8'));
-    res.json(frames);
+    
+    // Pemetaan frame ruby untuk rarity 'L'
+    const responseFrames = {
+        ...frames,
+        'L': frames.ruby || `${req.protocol}://${req.get('host')}/assets/frame_ruby.png`,
+        'ruby': frames.ruby || `${req.protocol}://${req.get('host')}/assets/frame_ruby.png`
+    };
+
+    res.json(responseFrames);
 });
 
 // 🎲 ENDPOINT GACHA PUSAT (Terhubung ke Firebase)
@@ -133,13 +141,17 @@ app.post('/api/gacha', async (req, res) => {
 
             if (!randomCard.isVideo) {
                 const rand = Math.random() * 100;
-                if (rand <= 10) {
-                    assignedRarity = 5;
-                } else if (rand <= 40) {
-                    assignedRarity = 4;
+                if (rand <= 2) {
+                    assignedRarity = 'L'; // 2% peluang Legendary (Ruby)
+                } else if (rand <= 12) {
+                    assignedRarity = 5;  // 10% peluang Bintang 5
+                } else if (rand <= 42) {
+                    assignedRarity = 4;  // 30% peluang Bintang 4
                 } else {
-                    assignedRarity = 3;
+                    assignedRarity = 3;  // 58% peluang Bintang 3
                 }
+            } else {
+                assignedRarity = 'Sp';
             }
 
             const printNumber = Math.floor(1000 + Math.random() * 9000);
@@ -264,3 +276,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
+              

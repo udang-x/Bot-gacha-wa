@@ -74,6 +74,25 @@ app.get('/api/frames', (req, res) => {
     res.json(frames);
 });
 
+// 🎒 ENDPOINT INVENTARIS & DATA USER PUSAT
+app.post('/api/user', (req, res) => {
+    const { sender } = req.body;
+    if (!sender) {
+        return res.status(400).json({ success: false, message: 'Sender tidak valid.' });
+    }
+
+    const users = getUsersDB();
+    if (!users[sender]) {
+        users[sender] = { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
+        saveUsersDB(users);
+    }
+
+    res.json({
+        success: true,
+        user: users[sender]
+    });
+});
+
 // 🎲 ENDPOINT GACHA PUSAT (Dengan Validasi Limit & Cooldown 15 Menit)
 app.post('/api/gacha', (req, res) => {
     const { sender } = req.body;
@@ -92,7 +111,7 @@ app.post('/api/gacha', (req, res) => {
 
     const users = getUsersDB();
     if (!users[sender]) {
-        users[sender] = { limit: 0, lastDaily: 0, lastGacha: 0 };
+        users[sender] = { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
     }
 
     const user = users[sender];
@@ -162,6 +181,31 @@ app.post('/api/gacha', (req, res) => {
     });
 });
 
+// 📥 ENDPOINT CLAIM KARTU PILIHAN KE INVENTARIS
+app.post('/api/claim', (req, res) => {
+    const { sender, acquiredCard } = req.body;
+    if (!sender || !acquiredCard) {
+        return res.status(400).json({ success: false, message: 'Data claim tidak valid.' });
+    }
+
+    const users = getUsersDB();
+    if (!users[sender]) {
+        users[sender] = { limit: 0, lastDaily: 0, lastGacha: 0, cards: [] };
+    }
+
+    if (!users[sender].cards) {
+        users[sender].cards = [];
+    }
+
+    users[sender].cards.push(acquiredCard);
+    saveUsersDB(users);
+
+    res.json({
+        success: true,
+        message: 'Kartu berhasil disimpan ke inventaris!'
+    });
+});
+
 // ⏳ ENDPOINT DAILY CLAIM AMAN
 app.post('/api/daily', (req, res) => {
     const { sender } = req.body;
@@ -174,7 +218,7 @@ app.post('/api/daily', (req, res) => {
     const cooldown = 24 * 60 * 60 * 1000; // 24 Jam
 
     if (!users[sender]) {
-        users[sender] = { limit: 0, lastDaily: 0, lastGacha: 0 };
+        users[sender] = { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
     }
 
     const user = users[sender];

@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
 const FRAMES_PATH = path.join(__dirname, 'frames.json');
 const USERS_PATH = path.join(__dirname, 'users.json');

@@ -27,6 +27,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 const PORT = process.env.PORT || 3000;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
 const FRAMES_PATH = path.join(__dirname, 'frames.json');
+const USERS_PATH = path.join(__dirname, 'users.json');
 
 // Fungsi pembantu untuk membuat kode unik acak
 function generateUniqueCode(length = 6) {
@@ -36,6 +37,20 @@ function generateUniqueCode(length = 6) {
         result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return result;
+}
+
+// Fungsi pembantu baca/tulis database user lokal di server
+function getUsersDB() {
+    if (!fs.existsSync(USERS_PATH)) return {};
+    try {
+        return JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+    } catch {
+        return {};
+    }
+}
+
+function saveUsersDB(data) {
+    fs.writeFileSync(USERS_PATH, JSON.stringify(data, null, 2));
 }
 
 app.get('/', (req, res) => {
@@ -71,27 +86,22 @@ app.post('/api/gacha', (req, res) => {
     }
 
     const rollCard = () => {
-        // 1. Pilih karakter acak dari database
         const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
-        
-        // 2. Tentukan Rarity secara dinamis
         let assignedRarity = 5;
 
-        // Jika kartu bukan video (gambar statis), acak bintang 3, 4, atau 5
         if (!randomCard.isVideo) {
             const rand = Math.random() * 100;
             if (rand <= 10) {
-                assignedRarity = 5;       // 10% rate bintang 5
+                assignedRarity = 5;
             } else if (rand <= 40) {
-                assignedRarity = 4;       // 30% rate bintang 4
+                assignedRarity = 4;
             } else {
-                assignedRarity = 3;       // 60% rate bintang 3
+                assignedRarity = 3;
             }
         }
 
         const printNumber = Math.floor(1000 + Math.random() * 9000);
         
-        // Buat objek kartu hasil gabungan dengan rarity dinamis
         const finalCard = {
             ...randomCard,
             rarity: assignedRarity
@@ -108,13 +118,54 @@ app.post('/api/gacha', (req, res) => {
         };
     };
 
-    // Ambil 2 kartu sekaligus untuk sistem pilihan (drop 2)
     const drop1 = rollCard();
     const drop2 = rollCard();
 
     res.json({
         success: true,
         choices: [drop1, drop2]
+    });
+});
+
+// ⏳ ENDPOINT DAILY CLAIM AMAN (Divalidasi Langsung di Server)
+app.post('/api/daily', (req, res) => {
+    const { sender } = req.body;
+    if (!sender) {
+        return res.status(400).json({ success: false, message: 'Sender tidak valid.' });
+    }
+
+    const users = getUsersDB();
+    const now = Date.now();
+    const cooldown = 24 * 60 * 60 * 1000; // 24 Jam
+
+    if (!users[sender]) {
+        users[sender] = { limit: 0, lastDaily: 0 };
+    }
+
+    const user = users[sender];
+    const timeDiff = now - user.lastDaily;
+
+    if (timeDiff < cooldown) {
+        const remainingTime = cooldown - timeDiff;
+        const remainingHours = Math.ceil(remainingTime / (1000 * 60 * 60));
+        return.json({
+            success: false,
+            cooldown: true,
+            remainingHours,
+            message: `⏳ Kamu sudah klaim daily. Coba lagi dalam ${remainingHours} jam.`
+        });
+    }
+
+    // Reward tiket daily (bisa diubah angkanya di sini)
+    user.limit += 9;
+    user.lastDaily = now;
+    users[sender] = user;
+    saveUsersDB(users);
+
+    res.json({
+        success: true,
+        newLimit: user.limit,
+        message: `🎁 Daily Claim Berhasil! Kamu mendapat +9 Tiket Gacha.`
     });
 });
 
@@ -145,3 +196,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
+    

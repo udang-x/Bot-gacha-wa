@@ -148,7 +148,7 @@ app.post('/api/daily', (req, res) => {
     if (timeDiff < cooldown) {
         const remainingTime = cooldown - timeDiff;
         const remainingHours = Math.ceil(remainingTime / (1000 * 60 * 60));
-        return.json({
+        return res.json({ // ✅ Diperbaiki menjadi res.json
             success: false,
             cooldown: true,
             remainingHours,
@@ -156,7 +156,7 @@ app.post('/api/daily', (req, res) => {
         });
     }
 
-    // Reward tiket daily (bisa diubah angkanya di sini)
+    // Reward tiket daily
     user.limit += 9;
     user.lastDaily = now;
     users[sender] = user;
@@ -196,4 +196,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
-    

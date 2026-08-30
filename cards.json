@@ -69,7 +69,7 @@
     "id": "c12",
     "name": "Kaedahara Kazuha",
     "series": "Genshin Impact",
-    "image": "https://i.imgur.com/v5K13gu.jpeg"
+    "image": "https://files.catbox.moe/17shqc.jpg"
   },
   {
     "id": "c13",
@@ -247,15 +247,16 @@
   },
   {
     "id": "c40",
-    "name": "Kuchiba Chisa C",
+    "name": "Kuchiba Chisa (Swimsuit)",
     "series": "Wuthering Waves",
-    "image": "https://i.imgur.com/xzLhIvH.jpeg"
+    "rarity": 5,
+    "image": "https://files.catbox.moe/227ios.jpeg"
   },
   {
     "id": "c41",
     "name": "Kuchiba Chisa",
     "series": "Wuthering Waves",
-    "image": "https://i.imgur.com/8gG2iVv.jpeg"
+    "image": "https://files.catbox.moe/ztnmf7.jpg"
   },
   {
     "id": "c42",
@@ -283,7 +284,7 @@
   },
   {
     "id": "c46",
-    "name": "Eight-Handled Sword Divergent Sila Divine General Mahoraga",
+    "name": "Mahoraga",
     "series": "Jujutsu Kaisen",
     "image": "https://i.imgur.com/REcVkey.jpeg"
   },
@@ -336,5 +337,27 @@
     "rarity": 5,
     "isVideo": true,
     "image": "https://files.catbox.moe/gutjyt.mp4"
+  },
+  {
+    "id": "c54",
+    "name": "Lynae Sp",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "isVideo": true,
+    "image": "https://files.catbox.moe/j9rzoh.MP4"
+  },
+  {
+    "id": "c55",
+    "name": "Lynae",
+    "series": "Wuthering Waves",
+    "image": "https://files.catbox.moe/ncc8do.jpeg"
+  },
+  {
+    "id": "c56",
+    "name": "Lynae (Swimsuit)",
+    "series": "Wuthering Waves",
+    "rarity": 5,
+    "image": "https://files.catbox.moe/vjnmlu.jpeg"
   }
 ]
+  

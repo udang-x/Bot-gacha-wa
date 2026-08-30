@@ -148,7 +148,7 @@ app.post('/api/daily', (req, res) => {
     if (timeDiff < cooldown) {
         const remainingTime = cooldown - timeDiff;
         const remainingHours = Math.ceil(remainingTime / (1000 * 60 * 60));
-        return res.json({ // ✅ Diperbaiki menjadi res.json
+        return res.json({ 
             success: false,
             cooldown: true,
             remainingHours,
@@ -196,3 +196,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
+    

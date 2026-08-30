@@ -74,8 +74,13 @@ app.get('/api/frames', (req, res) => {
     res.json(frames);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Sistem Akal-Akalan Rarity Dinamis & Drop 2 Pilihan)
+// 🎲 ENDPOINT GACHA PUSAT (Dengan Validasi Limit & Cooldown 15 Menit)
 app.post('/api/gacha', (req, res) => {
+    const { sender } = req.body;
+    if (!sender) {
+        return res.status(400).json({ success: false, message: 'Sender tidak valid.' });
+    }
+
     if (!fs.existsSync(CARDS_PATH)) {
         return res.status(404).json({ success: false, message: 'Cards database not found' });
     }
@@ -83,6 +88,28 @@ app.post('/api/gacha', (req, res) => {
     const cardsDB = JSON.parse(fs.readFileSync(CARDS_PATH, 'utf8'));
     if (!cardsDB.length) {
         return res.status(500).json({ success: false, message: 'Database kartu kosong' });
+    }
+
+    const users = getUsersDB();
+    if (!users[sender]) {
+        users[sender] = { limit: 0, lastDaily: 0, lastGacha: 0 };
+    }
+
+    const user = users[sender];
+    const now = Date.now();
+
+    // Cek Limit Tiket
+    if ((user.limit || 0) <= 0) {
+        return res.json({ success: false, message: '❌ Tiket gacha kamu habis! Ketik .daily untuk mengambil tiket harian.' });
+    }
+
+    // Cek Cooldown 15 Menit
+    const cooldownTime = 15 * 60 * 1000;
+    if (user.lastGacha && now - user.lastGacha < cooldownTime) {
+        const remaining = cooldownTime - (now - user.lastGacha);
+        const minutes = Math.floor(remaining / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+        return res.json({ success: false, message: `⏳ Kamu masih dalam masa cooldown!\nTunggu ${minutes} menit ${seconds} detik lagi.` });
     }
 
     const rollCard = () => {
@@ -121,13 +148,21 @@ app.post('/api/gacha', (req, res) => {
     const drop1 = rollCard();
     const drop2 = rollCard();
 
+    // Kurangi limit dan update cooldown user di server
+    user.limit -= 1;
+    user.lastGacha = now;
+    users[sender] = user;
+    saveUsersDB(users);
+
     res.json({
         success: true,
-        choices: [drop1, drop2]
+        drop1,
+        drop2,
+        newLimit: user.limit
     });
 });
 
-// ⏳ ENDPOINT DAILY CLAIM AMAN (Divalidasi Langsung di Server)
+// ⏳ ENDPOINT DAILY CLAIM AMAN
 app.post('/api/daily', (req, res) => {
     const { sender } = req.body;
     if (!sender) {
@@ -139,7 +174,7 @@ app.post('/api/daily', (req, res) => {
     const cooldown = 24 * 60 * 60 * 1000; // 24 Jam
 
     if (!users[sender]) {
-        users[sender] = { limit: 0, lastDaily: 0 };
+        users[sender] = { limit: 0, lastDaily: 0, lastGacha: 0 };
     }
 
     const user = users[sender];
@@ -156,8 +191,7 @@ app.post('/api/daily', (req, res) => {
         });
     }
 
-    // Reward tiket daily
-    user.limit += 9;
+    user.limit = (user.limit || 0) + 9;
     user.lastDaily = now;
     users[sender] = user;
     saveUsersDB(users);
@@ -169,7 +203,7 @@ app.post('/api/daily', (req, res) => {
     });
 });
 
-// 🎁 ENDPOINT GIVECARD AMAN (Validasi Ganda: Nomor/LID Owner + Passcode Khusus)
+// 🎁 ENDPOINT GIVECARD AMAN
 app.post('/api/givecard', (req, res) => {
     const { senderNumber, targetUser, cardId, ownerToken } = req.body;
     
@@ -179,14 +213,12 @@ app.post('/api/givecard', (req, res) => {
     const cleanSender = senderNumber ? String(senderNumber).replace(/[^0-9]/g, '') : '';
 
     if ((cleanSender !== officialOwnerNumber && cleanSender !== officialOwnerLid) || ownerToken !== SECRET_OWNER_TOKEN) {
-        console.log(`❌ DITOLAK: Nomor/LID ${cleanSender} atau token tidak valid mencoba memakai givecard.`);
         return res.status(403).json({ 
             success: false, 
             message: "❌ Akses ditolak! Kredensial Owner tidak valid." 
         });
     }
 
-    console.log(`✅ DITERIMA: Owner sah (${cleanSender}) menjalankan givecard.`);
     res.json({ 
         success: true, 
         message: "✅ Kartu berhasil diberikan oleh Owner!" 
@@ -196,4 +228,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat berjalan di port ${PORT}`);
 });
-    

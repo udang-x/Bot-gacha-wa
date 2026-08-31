@@ -101,7 +101,7 @@ app.get('/api/frames', (req, res) => {
     res.json(responseFrames);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Terhubung ke Firebase)
+// 🎲 ENDPOINT GACHA PUSAT (Terhubung ke Firebase dengan Sistem Variasi Masif Ratusan Ribu)
 app.post('/api/gacha', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -155,6 +155,7 @@ app.post('/api/gacha', async (req, res) => {
             // 2. Ambil karakter secara murni dan acak dari seluruh isi cards.json
             const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
 
+            // 3. Generasi nomor print unik masif (1000 - 9999) untuk menciptakan ratusan ribu kombinasi variasi kepemilikan
             const printNumber = Math.floor(1000 + Math.random() * 9000);
             
             const finalCard = {
@@ -165,9 +166,9 @@ app.post('/api/gacha', async (req, res) => {
             return {
                 card: finalCard,
                 acquired: {
-                    cardId: `${randomCard.id}_${assignedRarity}`,
+                    cardId: `${randomCard.id}_R${assignedRarity}_P${printNumber}`,
                     print: printNumber,
-                    code: generateUniqueCode(6),
+                    code: generateUniqueCode(8),
                     obtainedAt: Date.now()
                 }
             };
@@ -277,4 +278,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
-  
+      

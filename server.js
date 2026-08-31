@@ -126,7 +126,8 @@ app.post('/api/gacha', async (req, res) => {
             return res.json({ success: false, message: '❌ Tiket gacha kamu habis! Ketik .daily untuk mengambil tiket harian.' });
         }
 
-        // Cek Cooldown 15 Menit
+        // Cooldown dinonaktifkan sementara
+        /*
         const cooldownTime = 15 * 60 * 1000;
         if (user.lastGacha && now - user.lastGacha < cooldownTime) {
             const remaining = cooldownTime - (now - user.lastGacha);
@@ -134,6 +135,7 @@ app.post('/api/gacha', async (req, res) => {
             const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
             return res.json({ success: false, message: `⏳ Kamu masih dalam masa cooldown!\nTunggu ${minutes} menit ${seconds} detik lagi.` });
         }
+        */
 
         const rollCard = () => {
             // 1. Tentukan Rarity terlebih dahulu berdasarkan persentase (3, 4, 5, atau L)
@@ -275,3 +277,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
+  

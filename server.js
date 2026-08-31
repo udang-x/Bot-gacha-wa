@@ -101,7 +101,7 @@ app.get('/api/frames', (req, res) => {
     res.json(responseFrames);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Terhubung ke Firebase dengan Sistem Variasi Masif Ratusan Ribu)
+// 🎲 ENDPOINT GACHA PUSAT (Terhubung ke Firebase dengan Sistem Variasi Masif & Video Eksklusif Bintang 5 / L)
 app.post('/api/gacha', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -126,17 +126,6 @@ app.post('/api/gacha', async (req, res) => {
             return res.json({ success: false, message: '❌ Tiket gacha kamu habis! Ketik .daily untuk mengambil tiket harian.' });
         }
 
-        // Cooldown dinonaktifkan sementara
-        /*
-        const cooldownTime = 15 * 60 * 1000;
-        if (user.lastGacha && now - user.lastGacha < cooldownTime) {
-            const remaining = cooldownTime - (now - user.lastGacha);
-            const minutes = Math.floor(remaining / (1000 * 60));
-            const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-            return res.json({ success: false, message: `⏳ Kamu masih dalam masa cooldown!\nTunggu ${minutes} menit ${seconds} detik lagi.` });
-        }
-        */
-
         const rollCard = () => {
             // 1. Tentukan Rarity terlebih dahulu berdasarkan persentase (3, 4, 5, atau L)
             const rand = Math.random() * 100;
@@ -152,10 +141,21 @@ app.post('/api/gacha', async (req, res) => {
                 assignedRarity = 3;  // 58% peluang Bintang 3
             }
 
-            // 2. Ambil karakter secara murni dan acak dari seluruh isi cards.json
-            const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
+            // 2. Pisahkan database kartu berdasarkan tipe (Video vs Gambar Biasa)
+            const videoCards = cardsDB.filter(c => c.isVideo === true);
+            const imageCards = cardsDB.filter(c => !c.isVideo);
 
-            // 3. Generasi nomor print unik masif (1000 - 9999) untuk menciptakan ratusan ribu kombinasi variasi kepemilikan
+            let randomCard;
+
+            // 3. Batasi kartu video/GIF hanya muncul pada rarity Bintang 5 atau L
+            if ((assignedRarity === 5 || assignedRarity === 'L') && videoCards.length > 0) {
+                randomCard = videoCards[Math.floor(Math.random() * videoCards.length)];
+            } else {
+                const fallbackPool = imageCards.length > 0 ? imageCards : cardsDB;
+                randomCard = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
+            }
+
+            // 4. Generasi nomor print unik masif (1000 - 9999) untuk menciptakan jutaan kombinasi variasi
             const printNumber = Math.floor(1000 + Math.random() * 9000);
             
             const finalCard = {
@@ -278,4 +278,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
-      

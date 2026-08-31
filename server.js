@@ -136,23 +136,22 @@ app.post('/api/gacha', async (req, res) => {
         }
 
         const rollCard = () => {
-            const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
-            let assignedRarity = 5;
+            // 1. Tentukan Rarity terlebih dahulu berdasarkan persentase (3, 4, 5, atau L)
+            const rand = Math.random() * 100;
+            let assignedRarity = 3;
 
-            if (!randomCard.isVideo) {
-                const rand = Math.random() * 100;
-                if (rand <= 2) {
-                    assignedRarity = 'L'; // 2% peluang Legendary (Ruby)
-                } else if (rand <= 12) {
-                    assignedRarity = 5;  // 10% peluang Bintang 5
-                } else if (rand <= 42) {
-                    assignedRarity = 4;  // 30% peluang Bintang 4
-                } else {
-                    assignedRarity = 3;  // 58% peluang Bintang 3
-                }
+            if (rand <= 2) {
+                assignedRarity = 'L'; // 2% peluang Ruby
+            } else if (rand <= 12) {
+                assignedRarity = 5;  // 10% peluang Bintang 5
+            } else if (rand <= 42) {
+                assignedRarity = 4;  // 30% peluang Bintang 4
             } else {
-                assignedRarity = 'Sp';
+                assignedRarity = 3;  // 58% peluang Bintang 3
             }
+
+            // 2. Ambil karakter secara murni dan acak dari seluruh isi cards.json
+            const randomCard = cardsDB[Math.floor(Math.random() * cardsDB.length)];
 
             const printNumber = Math.floor(1000 + Math.random() * 9000);
             
@@ -164,7 +163,7 @@ app.post('/api/gacha', async (req, res) => {
             return {
                 card: finalCard,
                 acquired: {
-                    cardId: randomCard.isVideo ? randomCard.id : `${randomCard.id}_${assignedRarity}`,
+                    cardId: `${randomCard.id}_${assignedRarity}`,
                     print: printNumber,
                     code: generateUniqueCode(6),
                     obtainedAt: Date.now()
@@ -276,4 +275,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
-              

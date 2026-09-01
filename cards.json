@@ -111,7 +111,7 @@
     "id": "c19",
     "name": "Firefly Sp",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/r4f8nm.MP4"
   },
@@ -119,7 +119,7 @@
     "id": "c20",
     "name": "Castorice Sp",
     "series": "Honkai: Star Rail",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/88al9d.MP4"
   },
@@ -193,7 +193,7 @@
     "id": "c32",
     "name": "Furina Sp",
     "series": "Genshin Impact",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/pye4du.mp4"
   },
@@ -201,7 +201,7 @@
     "id": "c33",
     "name": "Hoshimi Miyabi Sp",
     "series": "Zenless Zone Zero",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/lnv6pd.MP4"
   },
@@ -209,7 +209,7 @@
     "id": "c34",
     "name": "Fleurdelys Sp",
     "series": "Wuthering Waves",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/qswf1m.mp4"
   },
@@ -217,7 +217,7 @@
     "id": "c35",
     "name": "Kuchiba Chisa Sp",
     "series": "Wuthering Waves",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/mbrdoo.MP4"
   },
@@ -309,7 +309,7 @@
     "id": "c50",
     "name": "Elaina Sp",
     "series": "Wandering Witch",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/ywz3og.mp4"
   },
@@ -317,7 +317,7 @@
     "id": "c51",
     "name": "Himmel & Frieren Sp",
     "series": "Frieren: Beyond Journey's End",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/i7r8b5.mp4"
   },
@@ -325,7 +325,7 @@
     "id": "c52",
     "name": "Frieren Sp",
     "series": "Frieren: Beyond Journey's End",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/mbfaw8.mp4"
   },
@@ -333,7 +333,7 @@
     "id": "c53",
     "name": "Columbina Sp",
     "series": "Genshin Impact",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/gutjyt.mp4"
   },
@@ -341,7 +341,7 @@
     "id": "c54",
     "name": "Lynae Sp",
     "series": "Wuthering Waves",
-    "rarity": 5,
+    "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/j9rzoh.MP4"
   },
@@ -356,5 +356,13 @@
     "name": "Lynae (Swimsuit)",
     "series": "Wuthering Waves",
     "image": "https://i.imgur.com/gY9NfI4.jpeg"
+  },
+  {
+    "id": "c57",
+    "name": "Qingxiao Sp",
+    "series": "Wuthering Waves",
+    "rarity": "L",
+    "isVideo": true,
+    "image": "https://files.catbox.moe/g9h0dz.MP4"
   }
-    ]
+]

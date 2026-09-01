@@ -9,7 +9,7 @@ admin.initializeApp({
   credential: admin.credential.cert({
     projectId: "bot-wa-74e7c",
     privateKeyId: "40c1533d32d3aa5268a54648e4ad7fe73232529e",
-    privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCh3IJlhUQbNChd\nisF4+2jd8lYK9wvUtGdBkdxzV7d9fKD3NPlEZiWADa0uvOWGxxmMuJwa5jEFgj92\nYaB/XkSi+gxlD9D9PRsexbOmgLscWMqSLWwFC6ARJoC8TFNlwiWdg5RcQXMLF1JN\nmYcYb0lmocU0sVCqSnSlBGjl0eIxzZv+UmDT1jTMEy8lHhhK1RBxj7tJ1TdFK22t\noluPDEDt+JIB0/t/RURY/xsyYoBIdyiFJRVvMf3Bava6Qol5R1euhw/tW+Sjdl2N\nCyYv++eVPpLU+hPt+TagIPA5eCUZf5aMN8lmqiid8ZS3LNgRFJTYH9icHFfd8viM\nTn4NFwBvAgMBAAECggEALVC7AQkqZCNaGbY7LE/WsCykgjVgDpDjR6w6d+Ba8rrt\npcgi8U9XuF4b2jXwXKdpM8iLi8xedRheBBqZAI+3z5kJ11FyRTPSX+8huL/ZoroJ\nHJuy3ka+7Y5GBHGp95c/SLYJ1zpLpxNEa41MET824ZDw0SvDVam6tmhhpdX46dAg\niOTyMB2Aru77ak63y+vUihm9/PQf3tRwiW06rVZKPmBGOBBCKc62T+fvlxYlPk8w\nRdFH8riNTgZo4YvMPl7PLAQiHG8lv8b3+1q+5Yn1vTv5MC6HC23CMyxr8vKSRhWS\nuHK5dUqCOKast8Irq2q2PUOsTKN/UonGB2ezdPHPIQKBgQDTTPEUIGg4ofsObddT\nfGBpmgEhdk68g8xfmAAVoTauSyVF+8d3VXqeXtAi1R4Gds4eWqJthXuhsCG33Oyf\npC51ao6in4khT8UdWul7549uHQUJ/fGRkLiKATQkkpHKEmae25l8ED8MNlV48F1h\nFyyTPY8MqVhV8kLX6Y+R1RyxHQKBgQDEGiufkFRbbQPWBje5/5LWpOfW9NB40Qyw\nPfW1H1L7xch2J8eBEJvvDT01bxo5IQQV30HHuXxRJg0nUD0b3Rda/6s2UsXXJ4ln\n5mpMWdMQKud1zn+QAql2apgzMCgxuCDv53WXD+5TqxJLdco6Ane/3Cve3Q718u2Q\n9vBUkvxt+wKBgC4GTWCn6mujhK7Q6B0MM2ftHp/uSBoxzxtnXWVYtzNhtN24iOsK\nWGoUlttvdlnMGPttnIGkmJhQaBfHbFcdiO0UZ7suas0xteq9+at+dbRzZ7yUbsDZ\nOAj/WB87Obw9I9MoXBc05ra/QwDTwlM6m//6YaVNYate2IZ1HkuSkuxVAoGAcALq\ny/eq15YLTOK8TfeXrhb/fh7UPU5bSwf5Iv3DbqBogmTyZdxQ1Vjgj3boqZ0cMkoV\nzrk6Mzfi54PDg/jjcEz9RMg+zUh+CeTo7reYAXIgR4AuCNocZdE5InPtYYjk92Nk\nHWcyIIRkrMmZO01RjTt7q47lDsM1w0npuMVEfqUCgYEAl4sYMIpKQtCZcxHmYkrd\nuJwqHPS4CrpLPWTcfP9W+b5LpeTUj9lhJJO0HLsVBahVUkz9hmgLBahVPA3tPGLq\ni+LUHW9TVNiGqi78VUBHQhZ2t9TfFqLum4Ezu6cO4FI92ICUGRuruwD+YOwJ+JBN\nzY9KQzu1veZ8q9KmASSO09A=\n-----END PRIVATE KEY-----`,
+    privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCh3IJlhUQbNChd\nisF4+2jd8lYK9wvUtGdBkdxzV7d9fKD3NPlEZiWADa0uvOWGxxmMuJwa5jEFgj92\nYaB/XkSi+gxlD9D9PRsexbOmgLscWMqSLWwFC6ARJoC8TFNlwiWdg5RcQXMLF1JN\nmYcYb0lmocU0sVCqSnSlBGjl0eIxzZv+UmDT1jTMEy8lHhhK1RBxj7tJ1TdFK22t\noluPDEDt+JIB0/t/RURY/xsyYoBIdyiFJRVvMf3Bava6Qol5R1euhw/tW+Sjdl2N\nCyYv++eVPpLU+hPt+TagIPA5eCUZf5aMN8lmqiid8ZS3LNgRFJTYH9icHFfd8viM\nTn4NFwBvAgMBAAECggEALVC7AQkqZCNaGbY7LE/WsCykgjVgDpDjR6w6d+Ba8rrt\npcgi8U9XuF4b2jXwXKdpM8iLi8xedRheBBqZAI+3z5kJ11FyRTPSX+8huL/ZoroJ\nHJuy3ka+7Y5GBHGp95c/SLYJ1zpLpxNEa41MET824ZDw0SvDVam6tmhhpdX46dAg\niOTyMB2Aru77ak63y+vUihm9/PQf3tRwiW06rVZKPmBGOBBCKc62T+fvlxYlPk8w\nRdFH8riNTgZo4YvMPl7PLAQiHG8lv8b3+1q+5Yn1vTv5MC6HC23CMyxr8vKSRhWS\nuHK5dUqCOKast8Irq2q2PUOsTKN/UonGB2ezdPHPIQKBgQDTTPEUIGg4ofsObddT\nfGBpmgEhdk68g8xfmAAVoTauSyVF+8d3VXqeXtAi1R4Gds4eWqJthXuhsCG33Oyf\npC51ao6in4khT8UdWul7549uHQUJ/fGRkLiKATQkkpHKEmae25l8ED8MNlV48F1h\FyyTPY8MqVhV8kLX6Y+R1RyxHQKBgQDEGiufkFRbbQPWBje5/5LWpOfW9NB40Qyw\nPfW1H1L7xch2J8eBEJvvDT01bxo5IQQV30HHuXxRJg0nUD0b3Rda/6s2UsXXJ4ln\n5mpMWdMQKud1zn+QAql2apgzMCgxuCDv53WXD+5TqxJLdco6Ane/3Cve3Q718u2Q\n9vBUkvxt+wKBgC4GTWCn6mujhK7Q6B0MM2ftHp/uSBoxzxtnXWVYtzNhtN24iOsK\nWGoUlttvdlnMGPttnIGkmJhQaBfHbFcdiO0UZ7suas0xteq9+at+dbRzZ7yUbsDZ\OAj/WB87Obw9I9MoXBc05ra/QwDTwlM6m//6YaVNYate2IZ1HkuSkuxVAoGAcALq\ny/eq15YLTOK8TfeXrhb/fh7UPU5bSwf5Iv3DbqBogmTyZdxQ1Vjgj3boqZ0cMkoV\nzrk6Mzfi54PDg/jjcEz9RMg+zUh+CeTo7reYAXIgR4AuCNocZdE5InPtYYjk92Nk\nHWcyIIRkrMmZO01RjTt7q47lDsM1w0npuMVEfqUCgYEAl4sYMIpKQtCZcxHmYkrd\nuJwqHPS4CrpLPWTcfP9W+b5LpeTUj9lhJJO0HLsVBahVUkz9hmgLBahVPA3tPGLq\ni+LUHW9TVNiGqi78VUBHQhZ2t9TfFqLum4Ezu6cO4FI92ICUGRuruwD+YOwJ+JBN\nzY9KQzu1veZ8q9KmASSO09A=\n-----END PRIVATE KEY-----`,
     clientEmail: "firebase-adminsdk-fbsvc@bot-wa-74e7c.iam.gserviceaccount.com"
   }),
   databaseURL: "https://bot-wa-74e7c-default-rtdb.asia-southeast1.firebasedatabase.app"
@@ -101,7 +101,7 @@ app.get('/api/frames', (req, res) => {
     res.json(responseFrames);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Rate Normal: 2% L, 10% Bintang 5, 30% Bintang 4, 58% Bintang 3 - Khusus Kartu Video Rarity Dipaksa L)
+// 🎲 ENDPOINT GACHA PUSAT (Cooldown 20 Menit)
 app.post('/api/gacha', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -120,6 +120,19 @@ app.post('/api/gacha', async (req, res) => {
 
         const user = await getFirebaseUser(sender);
         const now = Date.now();
+        const gachaCooldown = 20 * 60 * 1000; // Cooldown Gacha 20 Menit
+
+        // Cek Cooldown Gacha 20 Menit
+        if (user.lastGacha && now - user.lastGacha < gachaCooldown) {
+            const remainingTime = gachaCooldown - (now - user.lastGacha);
+            const remainingMinutes = Math.ceil(remainingTime / (1000 * 60));
+            return res.json({ 
+                success: false, 
+                cooldown: true,
+                remainingMinutes,
+                message: `⏳ Cooldown gacha! Coba lagi dalam ${remainingMinutes} menit.` 
+            });
+        }
 
         // Cek Limit Tiket
         if ((user.limit || 0) <= 0) {
@@ -131,17 +144,14 @@ app.post('/api/gacha', async (req, res) => {
             const imageCards = cardsDB.filter(c => !c.isVideo);
 
             let randomCard;
-            let assignedRarity = 3;
+            let assignedRarity;
 
-            // Tentukan apakah drop ini menghasilkan kartu video (berdasarkan perbandingan jumlah video vs total kartu atau random khusus)
-            // Di sini kita gunakan rate normal untuk pemilihan kartu, tetapi jika kartu yang terpilih adalah video, rarity-nya otomatis di-set 'L'.
-            const isVideoDrop = videoCards.length > 0 && Math.random() < (videoCards.length / cardsDB.length) * 0.15; // Peluang proporsional video
+            const isVideoDrop = videoCards.length > 0 && Math.random() < 0.15; 
 
             if (isVideoDrop) {
                 randomCard = videoCards[Math.floor(Math.random() * videoCards.length)];
-                assignedRarity = 'L'; // Khusus kartu video, rarity dipaksa jadi L (Ruby)
+                assignedRarity = randomCard.rarity || "L"; 
             } else {
-                // Rate normal untuk kartu gambar biasa
                 const rand = Math.random() * 100;
                 if (rand <= 2) {
                     assignedRarity = 'L'; 
@@ -157,7 +167,6 @@ app.post('/api/gacha', async (req, res) => {
                 randomCard = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
             }
 
-            // Generasi nomor print unik masif (1000 - 9999)
             const printNumber = Math.floor(1000 + Math.random() * 9000);
             
             const finalCard = {
@@ -217,7 +226,7 @@ app.post('/api/claim', async (req, res) => {
     }
 });
 
-// ⏳ ENDPOINT DAILY CLAIM AMAN (Terhubung ke Firebase)
+// ⏳ ENDPOINT DAILY CLAIM (Cooldown 24 Jam)
 app.post('/api/daily', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -227,10 +236,10 @@ app.post('/api/daily', async (req, res) => {
 
         const user = await getFirebaseUser(sender);
         const now = Date.now();
-        const cooldown = 24 * 60 * 60 * 1000; // 24 Jam
+        const dailyCooldown = 24 * 60 * 60 * 1000; // Cooldown Daily 24 Jam
 
-        if (user.lastDaily && now - user.lastDaily < cooldown) {
-            const remainingTime = cooldown - (now - user.lastDaily);
+        if (user.lastDaily && now - user.lastDaily < dailyCooldown) {
+            const remainingTime = dailyCooldown - (now - user.lastDaily);
             const remainingHours = Math.ceil(remainingTime / (1000 * 60 * 60));
             return res.json({ 
                 success: false,
@@ -280,3 +289,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
+          

@@ -101,7 +101,7 @@ app.get('/api/frames', (req, res) => {
     res.json(responseFrames);
 });
 
-// 🎲 ENDPOINT GACHA PUSAT (Terhubung ke Firebase dengan Sistem Variasi Masif & Video Eksklusif Bintang 5 / L)
+// 🎲 ENDPOINT GACHA PUSAT (Rate Normal: 2% L, 10% Bintang 5, 30% Bintang 4, 58% Bintang 3 - Khusus Kartu Video Rarity Dipaksa L)
 app.post('/api/gacha', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -127,35 +127,37 @@ app.post('/api/gacha', async (req, res) => {
         }
 
         const rollCard = () => {
-            // 1. Tentukan Rarity terlebih dahulu berdasarkan persentase (3, 4, 5, atau L)
-            const rand = Math.random() * 100;
-            let assignedRarity = 3;
-
-            if (rand <= 2) {
-                assignedRarity = 'L'; // 2% peluang Ruby
-            } else if (rand <= 12) {
-                assignedRarity = 5;  // 10% peluang Bintang 5
-            } else if (rand <= 42) {
-                assignedRarity = 4;  // 30% peluang Bintang 4
-            } else {
-                assignedRarity = 3;  // 58% peluang Bintang 3
-            }
-
-            // 2. Pisahkan database kartu berdasarkan tipe (Video vs Gambar Biasa)
             const videoCards = cardsDB.filter(c => c.isVideo === true);
             const imageCards = cardsDB.filter(c => !c.isVideo);
 
             let randomCard;
+            let assignedRarity = 3;
 
-            // 3. Batasi kartu video/GIF hanya muncul pada rarity Bintang 5 atau L
-            if ((assignedRarity === 5 || assignedRarity === 'L') && videoCards.length > 0) {
+            // Tentukan apakah drop ini menghasilkan kartu video (berdasarkan perbandingan jumlah video vs total kartu atau random khusus)
+            // Di sini kita gunakan rate normal untuk pemilihan kartu, tetapi jika kartu yang terpilih adalah video, rarity-nya otomatis di-set 'L'.
+            const isVideoDrop = videoCards.length > 0 && Math.random() < (videoCards.length / cardsDB.length) * 0.15; // Peluang proporsional video
+
+            if (isVideoDrop) {
                 randomCard = videoCards[Math.floor(Math.random() * videoCards.length)];
+                assignedRarity = 'L'; // Khusus kartu video, rarity dipaksa jadi L (Ruby)
             } else {
+                // Rate normal untuk kartu gambar biasa
+                const rand = Math.random() * 100;
+                if (rand <= 2) {
+                    assignedRarity = 'L'; 
+                } else if (rand <= 12) {
+                    assignedRarity = 5;  
+                } else if (rand <= 42) {
+                    assignedRarity = 4;  
+                } else {
+                    assignedRarity = 3;  
+                }
+
                 const fallbackPool = imageCards.length > 0 ? imageCards : cardsDB;
                 randomCard = fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
             }
 
-            // 4. Generasi nomor print unik masif (1000 - 9999) untuk menciptakan jutaan kombinasi variasi
+            // Generasi nomor print unik masif (1000 - 9999)
             const printNumber = Math.floor(1000 + Math.random() * 9000);
             
             const finalCard = {

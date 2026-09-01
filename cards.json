@@ -364,5 +364,113 @@
     "rarity": "L",
     "isVideo": true,
     "image": "https://files.catbox.moe/g9h0dz.MP4"
+  },
+  {
+    "id": "c58",
+    "name": "Ikuyo Kita",
+    "series": "Bocchi the Rock",
+    "image": "https://i.imgur.com/ZdMfhTO.jpeg"
+  },
+  {
+    "id": "c59",
+    "name": "Hitori Gotoh",
+    "series": "Bocchi the Rock",
+    "image": "https://i.imgur.com/7gKHiSm.jpeg"
+  },
+  {
+    "id": "c60",
+    "name": "Ryo Yamada",
+    "series": "Bocchi the Rock",
+    "image": "https://i.imgur.com/pvxMsUF.jpeg"
+  },
+  {
+    "id": "c61",
+    "name": "Nijika Ijichi",
+    "series": "Bocchi the Rock",
+    "image": "https://i.imgur.com/Z1q4Tvw.jpeg"
+  },
+  {
+    "id": "c62",
+    "name": "Arona",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/Poc4uMq.jpeg"
+  },
+  {
+    "id": "c63",
+    "name": "Plana",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/gKxv9am.jpeg"
+  },
+  {
+    "id": "c64",
+    "name": "Hayase Yuuka",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/1npMmZ8.jpeg"
+  },
+  {
+    "id": "c65",
+    "name": "Ushio Noa",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/0V76k7M.jpeg"
+  },
+  {
+    "id": "c66",
+    "name": "Izayoi Nonomi",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/hA3G792.jpeg"
+  },
+  {
+    "id": "c67",
+    "name": "Kuromi Serika",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/qngx1Mn.jpeg"
+  },
+  {
+    "id": "c68",
+    "name": "Okusora Ayane",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/oCbZTXZ.jpeg"
+  },
+  {
+    "id": "c69",
+    "name": "Takanashi Hoshino",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/OcmHZgK.jpeg"
+  },
+  {
+    "id": "c70",
+    "name": "Kurosaki Koyuki",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/pkwEStB.jpeg"
+  },
+  {
+    "id": "c71",
+    "name": "Tsukatsuki Rio",
+    "series": "Blue Archive",
+    "image": "https://i.imgur.com/UlGfj2l.jpeg"
+  },
+  {
+    "id": "c72",
+    "name": "Kessoku Band",
+    "series": "Bocchi the Rock",
+    "rarity": "L",
+    "isVideo": true,
+    "image": "https://files.catbox.moe/2u40qy.MP4"
+  },
+  {
+    "id": "c73",
+    "name": "Tsukatsuki Rio Sp",
+    "series": "Blue Archive",
+    "rarity": "L",
+    "isVideo": true,
+    "image": "https://files.catbox.moe/nlfrgc.MP4"
+  },
+  {
+    "id": "c74",
+    "name": "Takanashi Hoshino Sp",
+    "series": "Blue Archive",
+    "rarity": "L",
+    "isVideo": true,
+    "image": "https://files.catbox.moe/475azo.MP4"
   }
 ]

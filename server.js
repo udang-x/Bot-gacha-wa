@@ -59,7 +59,7 @@ async function getFirebaseUser(sender) {
     let userData = snapshot.val();
     
     if (!userData) {
-        userData = { limit: 5, lastDaily: 0, lastGacha: 0, cards: [] };
+        userData = { limit: 5, lastDaily: 0, lastGacha: 0, cards: [], coin: 0, script: 0 };
         await ref.set(userData);
     }
     if (!Array.isArray(userData.cards)) {
@@ -264,6 +264,33 @@ app.post('/api/daily', async (req, res) => {
     }
 });
 
+// 🧭 ENDPOINT EKSPEDISI CLAIM (Coin & Script)
+app.post('/api/expedition/claim', async (req, res) => {
+    try {
+        const { sender, earnedCoins, earnedScripts } = req.body;
+        if (!sender) {
+            return res.status(400).json({ success: false, message: 'Sender tidak valid.' });
+        }
+
+        const user = await getFirebaseUser(sender);
+        
+        user.coin = (user.coin || 0) + (earnedCoins || 0);
+        user.script = (user.script || 0) + (earnedScripts || 0);
+        
+        await saveFirebaseUser(sender, user);
+
+        res.json({
+            success: true,
+            coin: user.coin,
+            script: user.script,
+            message: 'Hasil ekspedisi berhasil diamankan ke brankas.'
+        });
+    } catch (error) {
+        console.error("Expedition claim error:", error);
+        res.status(500).json({ success: false, message: 'Gagal memproses klaim ekspedisi.' });
+    }
+});
+
 // 🎁 ENDPOINT GIVECARD AMAN
 app.post('/api/givecard', (req, res) => {
     const { senderNumber, targetUser, cardId, ownerToken } = req.body;
@@ -289,4 +316,3 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });
-          

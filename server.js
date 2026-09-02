@@ -25,9 +25,15 @@ app.use(cors());
 const API_SECRET = "KunciRahasiaBotGacha123";
 const SECRET_OWNER_TOKEN = "OwnerSuperSecretPasscode999";
 
-// Middleware Proteksi Header API Key
+// Middleware Proteksi Header API Key (Aman untuk Bot, Terbuka untuk Galeri Web & Asset Publik)
 app.use((req, res, next) => {
-    if (req.path === '/') return next();
+    if (req.path === '/' || 
+        req.path.startsWith('/assets') || 
+        req.path === '/api/cards' || 
+        req.path === '/api/frames' || 
+        !req.path.startsWith('/api/')) {
+        return next();
+    }
     
     const clientKey = req.headers['x-api-key'];
     if (clientKey !== API_SECRET) {
@@ -36,6 +42,8 @@ app.use((req, res, next) => {
     next();
 });
 
+// Menyediakan folder statis untuk galeri web dan aset gambar/video
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 const PORT = process.env.PORT || 3000;
@@ -72,10 +80,6 @@ async function saveFirebaseUser(sender, userData) {
     const ref = db.ref(`users/${sender}`);
     await ref.set(userData);
 }
-
-app.get('/', (req, res) => {
-    res.json({ status: 'Gacha Backend Server with Firebase is Running!' });
-});
 
 app.get('/api/cards', (req, res) => {
     if (!fs.existsSync(CARDS_PATH)) {

@@ -7,24 +7,28 @@
     <style>
         body { background-color: #0b0f19; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
         
-        /* Header Estetik & Bersih */
-        .header { background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; padding: 30px 20px 20px 20px; text-align: center; }
-        .header h1 { color: #38bdf8; font-size: 24px; margin: 0; letter-spacing: 2px; text-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
-        .header p.subtitle { color: #94a3b8; font-size: 12px; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+        /* Header Estetik & Kompak */
+        .header { background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; padding: 15px 10px 10px 10px; text-align: center; }
+        .header h1 { color: #38bdf8; font-size: 18px; margin: 0; letter-spacing: 1px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        .header p.subtitle { color: #94a3b8; font-size: 10px; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
 
-        /* Panel Kontrol Hemat Kuota */
-        .controls { text-align: center; margin-bottom: 25px; }
-        .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 12px; transition: 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        /* Panel Kontrol Kompak */
+        .controls { text-align: center; margin-bottom: 15px; }
+        .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 11px; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .btn-toggle:hover { background: #38bdf8; color: #0b0f19; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-        .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-3px); border-color: #38bdf8; }
-        .card img, .card video { width: 100%; height: 230px; object-fit: cover; border-radius: 6px; cursor: pointer; background: #0f172a; }
-        .name { margin-top: 8px; font-weight: bold; font-size: 13px; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .series { font-size: 11px; color: #38bdf8; margin-top: 3px; }
+        /* Grid 3 Kolom pas untuk 9 kartu di satu layar HP */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 6px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); border-color: #38bdf8; }
+        
+        /* Ukuran Gambar & Video diperkecil agar pas 3 baris dalam 1 layar */
+        .card img, .card video { width: 100%; height: 110px; object-fit: cover; border-radius: 4px; cursor: pointer; background: #0f172a; }
+        
+        .name { margin-top: 5px; font-weight: bold; font-size: 11px; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .series { font-size: 9px; color: #38bdf8; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     </style>
 </head>
 <body>
@@ -36,11 +40,11 @@
     <div class="container">
         <!-- Panel Kontrol Penghemat Data -->
         <div class="controls">
-            <button class="btn-toggle" id="toggleAutoplay" onclick="toggleAutoplayMode()">Mode Video: Klik untuk Putar (Hemat Kuota)</button>
+            <button class="btn-toggle" id="toggleAutoplay" onclick="toggleAutoplayMode()">Mode Video: Klik untuk Putar</button>
         </div>
         
         <div class="grid" id="card-grid">
-            <p style="text-align: center; grid-column: 1 / -1; color: #94a3b8;">Memuat data dari terminal arsip...</p>
+            <p style="text-align: center; grid-column: 1 / -1; color: #94a3b8; font-size: 12px;">Memuat data dari terminal arsip...</p>
         </div>
     </div>
 
@@ -53,12 +57,12 @@
             const videos = document.querySelectorAll('video');
 
             if (isAutoplayActive) {
-                btn.textContent = "Mode Video: Autoplay Nyala (Boros Kuota)";
+                btn.textContent = "Mode Video: Autoplay Nyala";
                 btn.style.borderColor = "#f87171";
                 btn.style.color = "#f87171";
                 videos.forEach(v => { v.autoplay = true; v.play(); });
             } else {
-                btn.textContent = "Mode Video: Klik untuk Putar (Hemat Kuota)";
+                btn.textContent = "Mode Video: Klik untuk Putar";
                 btn.style.borderColor = "#38bdf8";
                 btn.style.color = "#38bdf8";
                 videos.forEach(v => { v.autoplay = false; v.pause(); });
@@ -70,7 +74,7 @@
             .then(data => {
                 const grid = document.getElementById('card-grid');
                 if (!data.length) {
-                    grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Tidak ada entitas ditemukan.</p>';
+                    grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-size: 12px;">Tidak ada entitas ditemukan.</p>';
                     return;
                 }
                 grid.innerHTML = data.map(c => `
@@ -84,7 +88,7 @@
                 `).join('');
             })
             .catch(err => {
-                document.getElementById('card-grid').innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #f87171;">Gagal memuat arsip dari server.</p>';
+                document.getElementById('card-grid').innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #f87171; font-size: 12px;">Gagal memuat arsip.</p>';
             });
     </script>
 </body>

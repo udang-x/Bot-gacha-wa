@@ -43,8 +43,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// Menggunakan port dari lingkungan panel atau fallback ke 3000 (bisa juga diganti 8080)
-const PORT = process.env.PORT || 3000;
+// Menggunakan port dari lingkungan panel atau fallback ke 8080
+const PORT = process.env.PORT || 8080;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
 const FRAMES_PATH = path.join(__dirname, 'frames.json');
 

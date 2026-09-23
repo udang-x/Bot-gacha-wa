@@ -43,7 +43,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-const PORT = process.env.PORT || 3000;
+// Menggunakan port dari lingkungan panel Wispbyte atau fallback ke port alokasi
+const PORT = process.env.PORT || 10487;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
 const FRAMES_PATH = path.join(__dirname, 'frames.json');
 
@@ -56,7 +57,6 @@ function generateUniqueCode(length = 6) {
     return result;
 }
 
-// 🔥 FUNGSI AMAN: Membersihkan sender agar tidak error match/replace
 function getCleanSender(sender) {
     if (!sender) return 'unknown_user';
     if (typeof sender === 'string') return sender.replace(/[^0-9]/g, '') || sender;
@@ -320,4 +320,4 @@ app.post('/api/givecard', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server pusat backend berjalan di port ${PORT}`);
 });
-          
+                              

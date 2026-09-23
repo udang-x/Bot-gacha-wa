@@ -1,4 +1,4 @@
-const express = require('express');
+Const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +9,7 @@ admin.initializeApp({
   credential: admin.credential.cert({
     projectId: "bot-wa-74e7c",
     privateKeyId: "40c1533d32d3aa5268a54648e4ad7fe73232529e",
-    privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCh3IJlhUQbNChd\nisF4+2jd8lYK9wvUtGdBkdxzV7d9fKD3NPlEZiWADa0uvOWGxxmMuJwa5jEFgj92\nYaB/XkSi+gxlD9D9PRsexbOmgLscWMqSLWwFC6ARJoC8TFNlwiWdg5RcQXMLF1JN\nmYcYb0lmocU0sVCqSnSlBGjl0eIxzZv+UmDT1jTMEy8lHhhK1RBxj7tJ1TdFK22t\noluPDEDt+JIB0/t/RURY/xsyYoBIdyiFJRVvMf3Bava6Qol5R1euhw/tW+Sjdl2N\nCyYv++eVPpLU+hPt+TagIPA5eCUZf5aMN8lmqiid8ZS3LNgRFJTYH9icHFfd8viM\nTn4NFwBvAgMBAAECggEALVC7AQkqZCNaGbY7LE/WsCykgjVgDpDjR6w6d+Ba8rrt\npcgi8U9XuF4b2jXwXKdpM8iLi8xedRheBBqZAI+3z5kJ11FyRTPSX+8huL/ZoroJ\nHJuy3ka+7Y5GBHGp95c/SLYJ1zpLpxNEa41MET824ZDw0SvDVam6tmhhpdX46dAg\niOTyMB2Aru77ak63y+vUihm9/PQf3tRwiW06rVZKPmBGOBBCKc62T+fvlxYlPk8w\nRdFH8riNTgZo4YvMPl7PLAQiHG8lv8b3+1q+5Yn1vTv5MC6HC23CMyxr8vKSRhWS\nuHK5dUqCOKast8Irq2q2PUOsTKN/UonGB2ezdPHPIQKBgQDTTPEUIGg4ofsObddT\nfGBpmgEhdk68g8xfmAAVoTauSyVF+8d3VXqeXtAi1R4Gds4eWqJthXuhsCG33Oyf\npC51ao6in4khT8UdWul7549uHQUJ/fGRkLiKATQkkpHKEmae25l8ED8MNlV48F1h\FyyTPY8MqVhV8kLX6Y+R1RyxHQKBgQDEGiufkFRbbQPWBje5/5LWpOfW9NB40Qyw\nPfW1H1L7xch2J8eBEJvvDT01bxo5IQQV30HHuXxRJg0nUD0b3Rda/6s2UsXXJ4ln\n5mpMWdMQKud1zn+QAql2apgzMCgxuCDv53WXD+5TqxJLdco6Ane/3Cve3Q718u2Q\n9vBUkvxt+wKBgC4GTWCn6mujhK7Q6B0MM2ftHp/uSBoxzxtnXWVYtzNhtN24iOsK\nWGoUlttvdlnMGPttnIGkmJhQaBfHbFcdiO0UZ7suas0xteq9+at+dbRzZ7yUbsDZ\OAj/WB87Obw9I9MoXBc05ra/QwDTwlM6m//6YaVNYate2IZ1HkuSkuxVAoGAcALq\ny/eq15YLTOK8TfeXrhb/fh7UPU5bSwf5Iv3DbqBogmTyZdxQ1Vjgj3boqZ0cMkoV\nzrk6Mzfi54PDg/jjcEz9RMg+zUh+CeTo7reYAXIgR4AuCNocZdE5InPtYYjk92Nk\HWcyIIRkrMmZO01RjTt7q47lDsM1w0npuMVEfqUCgYEAl4sYMIpKQtCZcxHmYkrd\nuJwqHPS4CrpLPWTcfP9W+b5LpeTUj9lhJJO0HLsVBahVUkz9hmgLBahVPA3tPGLq\ni+LUHW9TVNiGqi78VUBHQhZ2t9TfFqLum4Ezu6cO4FI92ICUGRuruwD+YOwJ+JBN\nzY9KQzu1veZ8q9KmASSO09A=\n-----END PRIVATE KEY-----`,
+    privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCh3IJlhUQbNChd\nisF4+2jd8lYK9wvUtGdBkdxzV7d9fKD3NPlEZiWADa0uvOWGxxmMuJwa5jEFgj92\nYaB/XkSi+gxlD9D9PRsexbOmgLscWMqSLWwFC6ARJoC8TFNlwiWdg5RcQXMLF1JN\nmYcYb0lmocU0sVCqSnSlBGjl0eIxzZv+UmDT1jTMEy8lHhhK1RBxj7tJ1TdFK22t\noluPDEDt+JIB0/t/RURY/xsyYoBIdyiFJRVvMf3Bava6Qol5R1euhw/tW+Sjdl2N\nCyYv++eVPpLU+hPt+TagIPA5eCUZf5aMN8lmqiid8ZS3LNgRFJTYH9icHFfd8viM\nTn4NFwBvAgMBAAECggEALVC7AQkqZCNaGbY7LE/WsCykgjVgDpDjR6w6d+Ba8rrt\npcgi8U9XuF4b2jXwXKdpM8iLi8xedRheBBqZAI+3z5kJ11FyRTPSX+8huL/ZoroJ\nHJuy3ka+7Y5GBHGp95c/SLYJ1zpLpxNEa41MET824ZDw0SvDVam6tmhhpdX46dAg\niOTyMB2Aru77ak63y+vUihm9/PQf3tRwiW06rVZKPmBGOBBCKc62T+fvlxYlPk8w\nRdFH8riNTgZo4YvMPl7PLAQiHG8lv8b3+1q+5Yn1vTv5MC6HC23CMyxr8vKSRhWS\nuHK5dUqCOKast8Irq2q2PUOsTKN/UonGB2ezdPHPIQKBgQDTTPEUIGg4ofsObddT\nfGBpmgEhdk68g8xfmAAVoTauSyVF+8d3VXqeXtAi1R4Gds4eWqJthXuhsCG33Oyf\npC51ao6in4khT8UdWul7549uHQUJ/fGRkLiKATQkkpHKEmae25l8ED8MNlV48F1h\FyyTPY8MqVhV8kLX6Y+R1RyxHQKBgQDEGiufkFRbbQPWBje5/5LWpOfW9NB40Qyw\nPfW1H1L7xch2J8eBEJvvDT01bxo5IQQV30HHuXxRJg0nUD0b3Rda/6s2UsXXJ4ln\n5mpMWdMQKud1zn+QAql2apgzMCgxuCDv53WXD+5TqxJLdco6Ane/3Cve3Q718u2Q\n9vBUkvxt+wKBgC4GTWCn6mujhK7Q6B0MM2ftHp/uSBoxzxtnXWVYtzNhtN24iOsK\nWGoUlttvdlnMGPttnIGkmJhQaBfHbFcdiO0UZ7suas0xteq9+at+dbRzZ7yUbsDZ\OAj/WB87Obw9I9MoXBc05ra/QwDTwlM6m//6YaVNYate2IZ1HkuSkuxVAoGAcALq\ny/eq15YLTOK8TfeXrhb/fh7UPU5bSwf5Iv3DbqBogmTyZdxQ1Vjgj3boqZ0cMkoV\nzrk6Mzfi54PDg/jjcEz9RMg+zUh+CeTo7reYAXIgR4AuCNocZdE5InPtYYjk92Nk\nHWcyIIRkrMmZO01RjTt7q47lDsM1w0npuMVEfqUCgYEAl4sYMIpKQtCZcxHmYkrd\nuJwqHPS4CrpLPWTcfP9W+b5LpeTUj9lhJJO0HLsVBahVUkz9hmgLBahVPA3tPGLq\ni+LUHW9TVNiGqi78VUBHQhZ2t9TfFqLum4Ezu6cO4FI92ICUGRuruwD+YOwJ+JBN\nzY9KQzu1veZ8q9KmASSO09A=\n-----END PRIVATE KEY-----`,
     clientEmail: "firebase-adminsdk-fbsvc@bot-wa-74e7c.iam.gserviceaccount.com"
   }),
   databaseURL: "https://bot-wa-74e7c-default-rtdb.asia-southeast1.firebasedatabase.app"
@@ -21,9 +21,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// 🔒 Kunci Rahasia API & Password Khusus Owner
 const API_SECRET = "KunciRahasiaBotGacha123";
 const SECRET_OWNER_TOKEN = "OwnerSuperSecretPasscode999";
 
+// Middleware Proteksi Header API Key (Aman untuk Bot, Terbuka untuk Galeri Web & Asset Publik)
 app.use((req, res, next) => {
     if (req.path === '/' || 
         req.path.startsWith('/assets') || 
@@ -40,14 +42,15 @@ app.use((req, res, next) => {
     next();
 });
 
+// Menyediakan folder statis untuk galeri web dan aset gambar/video
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// Menggunakan port dari lingkungan panel atau fallback ke 8080
 const PORT = process.env.PORT || 3000;
 const CARDS_PATH = path.join(__dirname, 'cards.json');
 const FRAMES_PATH = path.join(__dirname, 'frames.json');
 
+// Fungsi pembantu untuk membuat kode unik acak
 function generateUniqueCode(length = 6) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -57,19 +60,9 @@ function generateUniqueCode(length = 6) {
     return result;
 }
 
-function getCleanSender(sender) {
-    if (!sender) return 'unknown_user';
-    if (typeof sender === 'string') return sender.replace(/[^0-9]/g, '') || sender;
-    if (typeof sender === 'object') {
-        const raw = sender.id || sender.remoteJid || sender.number || JSON.stringify(sender);
-        return String(raw).replace(/[^0-9]/g, '') || 'unknown_user';
-    }
-    return String(sender).replace(/[^0-9]/g, '') || 'unknown_user';
-}
-
+// Helper untuk ambil/buat data user di Firebase
 async function getFirebaseUser(sender) {
-    const safeSender = getCleanSender(sender);
-    const ref = db.ref(`users/${safeSender}`);
+    const ref = db.ref(`users/${sender}`);
     const snapshot = await ref.once('value');
     let userData = snapshot.val();
     
@@ -84,8 +77,7 @@ async function getFirebaseUser(sender) {
 }
 
 async function saveFirebaseUser(sender, userData) {
-    const safeSender = getCleanSender(sender);
-    const ref = db.ref(`users/${safeSender}`);
+    const ref = db.ref(`users/${sender}`);
     await ref.set(userData);
 }
 
@@ -103,6 +95,7 @@ app.get('/api/frames', (req, res) => {
     }
     const frames = JSON.parse(fs.readFileSync(FRAMES_PATH, 'utf8'));
     
+    // Pemetaan frame ruby untuk rarity 'L'
     const responseFrames = {
         ...frames,
         'L': frames.ruby || `${req.protocol}://${req.get('host')}/assets/frame_ruby.png`,
@@ -112,6 +105,7 @@ app.get('/api/frames', (req, res) => {
     res.json(responseFrames);
 });
 
+// 🎲 ENDPOINT GACHA PUSAT (Cooldown 20 Menit)
 app.post('/api/gacha', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -130,8 +124,9 @@ app.post('/api/gacha', async (req, res) => {
 
         const user = await getFirebaseUser(sender);
         const now = Date.now();
-        const gachaCooldown = 20 * 60 * 1000;
+        const gachaCooldown = 20 * 60 * 1000; // Cooldown Gacha 20 Menit
 
+        // Cek Cooldown Gacha 20 Menit
         if (user.lastGacha && now - user.lastGacha < gachaCooldown) {
             const remainingTime = gachaCooldown - (now - user.lastGacha);
             const remainingMinutes = Math.ceil(remainingTime / (1000 * 60));
@@ -143,6 +138,7 @@ app.post('/api/gacha', async (req, res) => {
             });
         }
 
+        // Cek Limit Tiket
         if ((user.limit || 0) <= 0) {
             return res.json({ success: false, message: '❌ Tiket gacha kamu habis! Ketik .daily untuk mengambil tiket harian.' });
         }
@@ -212,6 +208,7 @@ app.post('/api/gacha', async (req, res) => {
     }
 });
 
+// 📥 ENDPOINT CLAIM KARTU PILIHAN KE FIREBASE
 app.post('/api/claim', async (req, res) => {
     try {
         const { sender, acquiredCard } = req.body;
@@ -233,6 +230,7 @@ app.post('/api/claim', async (req, res) => {
     }
 });
 
+// ⏳ ENDPOINT DAILY CLAIM (Cooldown 24 Jam)
 app.post('/api/daily', async (req, res) => {
     try {
         const { sender } = req.body;
@@ -242,7 +240,7 @@ app.post('/api/daily', async (req, res) => {
 
         const user = await getFirebaseUser(sender);
         const now = Date.now();
-        const dailyCooldown = 24 * 60 * 60 * 1000;
+        const dailyCooldown = 24 * 60 * 60 * 1000; // Cooldown Daily 24 Jam
 
         if (user.lastDaily && now - user.lastDaily < dailyCooldown) {
             const remainingTime = dailyCooldown - (now - user.lastDaily);
@@ -270,6 +268,7 @@ app.post('/api/daily', async (req, res) => {
     }
 });
 
+// 🧭 ENDPOINT EKSPEDISI CLAIM (Coin & Script)
 app.post('/api/expedition/claim', async (req, res) => {
     try {
         const { sender, earnedCoins, earnedScripts } = req.body;
@@ -296,6 +295,7 @@ app.post('/api/expedition/claim', async (req, res) => {
     }
 });
 
+// 🎁 ENDPOINT GIVECARD AMAN
 app.post('/api/givecard', (req, res) => {
     const { senderNumber, targetUser, cardId, ownerToken } = req.body;
     
@@ -318,5 +318,5 @@ app.post('/api/givecard', (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Server pusat backend berjalan di port ${PORT}`);
+    console.log(`🚀 Server pusat Railway + Firebase berjalan di port ${PORT}`);
 });

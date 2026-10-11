@@ -162,27 +162,84 @@
             pointer-events: auto;
         }
 
-        /* Header Estetik & Kompak */
-        .header { background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; padding: 15px 10px 10px 10px; text-align: center; }
-        .header h1 { color: #38bdf8; font-size: 18px; margin: 0; letter-spacing: 1px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        /* Header Estetik */
+        .header { background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; padding: 18px 10px 12px 10px; text-align: center; }
+        .header h1 { color: #38bdf8; font-size: 20px; margin: 0; letter-spacing: 1px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
         .header p.subtitle { color: #94a3b8; font-size: 10px; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 12px; }
 
-        /* Panel Kontrol Kompak */
-        .controls { text-align: center; margin-bottom: 15px; }
-        .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 11px; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        /* Panel Kontrol */
+        .controls { text-align: center; margin-bottom: 18px; }
+        .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 11px; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .btn-toggle:hover { background: #38bdf8; color: #0b0f19; }
 
-        /* Grid 3 Kolom */
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 6px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-2px); border-color: #38bdf8; }
+        /* Grid 2 Kolom */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        .card img, .card video { width: 100%; height: 110px; object-fit: cover; border-radius: 4px; cursor: pointer; background: #0f172a; }
+        /* 🛠️ Desain Kartu Gaya Profil Modern (Terinspirasi dari referensi) */
+        .card { 
+            background: linear-gradient(145deg, #162032 0%, #0f172a 100%); 
+            border: 1px solid #334155; 
+            border-radius: 14px; 
+            padding: 10px; 
+            text-align: center; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4); 
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.7s ease forwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         
-        .name { margin-top: 5px; font-weight: bold; font-size: 11px; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .series { font-size: 9px; color: #38bdf8; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card img, .card video { 
+            width: 100%; 
+            height: 140px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            background: #0b0f19; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        .card-content {
+            padding: 8px 4px 4px 4px;
+        }
+
+        .name { 
+            font-weight: bold; 
+            font-size: 14px; 
+            color: #f8fafc; 
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        
+        .series { 
+            font-size: 10px; 
+            color: #94a3b8; 
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .badge-rarity {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +277,6 @@
     </div>
 
     <script>
-        // Logika Tombol Power & Transisi Galaksi
         const powerBtn = document.getElementById('powerBtn');
         const powerWrapper = document.getElementById('powerWrapper');
         const galaxySpace = document.getElementById('galaxySpace');
@@ -235,7 +291,6 @@
             }, 600);
         });
 
-        // Logika Dashboard Elysium Archive
         let isAutoplayActive = false;
 
         function toggleAutoplayMode() {
@@ -264,13 +319,16 @@
                     grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-size: 12px;">Tidak ada entitas ditemukan.</p>';
                     return;
                 }
-                grid.innerHTML = data.map(c => `
-                    <div class="card">
+                grid.innerHTML = data.map((c, index) => `
+                    <div class="card" style="animation-delay: ${index * 0.08}s">
                         ${c.isVideo 
                             ? `<video src="${c.image}" muted loop playsinline preload="metadata" onclick="this.paused ? this.play() : this.pause()" title="Klik untuk memutar/menjeda"></video>` 
                             : `<img src="${c.image}" alt="${c.name}">`}
-                        <div class="name">${c.name}</div>
-                        <div class="series">${c.series}</div>
+                        <div class="card-content">
+                            <div class="name">${c.name}</div>
+                            <div class="series">Asal Seri: ${c.series}</div>
+                            <span class="badge-rarity">Entity Database</span>
+                        </div>
                     </div>
                 `).join('');
             })

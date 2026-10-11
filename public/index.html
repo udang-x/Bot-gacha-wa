@@ -11,6 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             padding: 0; 
+            overflow-x: hidden;
             -webkit-user-select: none;
             user-select: none;
         }
@@ -155,6 +156,8 @@
             z-index: 10;
             background-color: #0b0f19;
             min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .main-dashboard.show {
@@ -169,34 +172,36 @@
             z-index: 50;
             background-color: #0b0f19;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            width: 100%;
         }
 
-        /* Header dengan Tombol Garis Tiga (Hamburger Menu) */
+        /* Header Rapi */
         .header { 
             background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); 
             border-bottom: 1px solid #1e293b; 
-            padding: 14px 16px; 
+            padding: 12px 14px; 
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Tombol Garis Tiga Estetik */
+        /* Tombol Garis Tiga */
         .menu-btn {
             background: #162032;
             border: 1px solid #334155;
-            border-radius: 12px;
-            width: 42px;
-            height: 42px;
+            border-radius: 10px;
+            width: 38px;
+            height: 38px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             transition: 0.2s;
             -webkit-tap-highlight-color: transparent;
+            flex-shrink: 0;
         }
 
         .menu-btn:active {
@@ -206,7 +211,7 @@
 
         .menu-btn span {
             display: block;
-            width: 18px;
+            width: 16px;
             height: 2px;
             background-color: #38bdf8;
             border-radius: 2px;
@@ -221,13 +226,13 @@
         }
         .header-text p.subtitle { 
             color: #94a3b8; 
-            font-size: 9px; 
+            font-size: 8.5px; 
             margin-top: 2px; 
             letter-spacing: 0.5px; 
             text-transform: uppercase; 
         }
 
-        /* --- SIDEBAR / MENU NAVIGASI SAMPING --- */
+        /* --- SIDEBAR MENU --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -260,6 +265,7 @@
             flex-direction: column;
             padding: 20px 15px;
             box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+            box-sizing: border-box;
         }
 
         .sidebar.active {
@@ -277,7 +283,7 @@
 
         .sidebar-title {
             color: #38bdf8;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             letter-spacing: 1px;
         }
@@ -286,10 +292,10 @@
             background: #1e293b;
             border: 1px solid #334155;
             color: #f8fafc;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -327,28 +333,29 @@
         .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 11px; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .btn-toggle:hover { background: #38bdf8; color: #0b0f19; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 12px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 10px; box-sizing: border-box; }
 
-        /* Grid 2 Kolom */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        /* Grid 2 Kolom Rapi */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         
-        /* Desain Kartu Gaya Profil Modern dengan Scroll Fade-In Berulang */
+        /* Kartu Profil Modern */
         .card { 
             background: linear-gradient(145deg, #162032 0%, #0f172a 100%); 
             border: 1px solid #334155; 
-            border-radius: 14px; 
-            padding: 10px; 
+            border-radius: 12px; 
+            padding: 8px; 
             text-align: center; 
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4); 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-sizing: border-box;
         }
 
         .card.scroll-animate {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .card.scroll-animate.show {
@@ -358,41 +365,46 @@
         
         .card img, .card video { 
             width: 100%; 
-            height: 140px; 
+            height: 135px; 
             object-fit: cover; 
-            border-radius: 10px; 
+            border-radius: 8px; 
             cursor: pointer; 
             background: #0b0f19; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
         
         .card-content {
-            padding: 8px 4px 4px 4px;
+            padding: 6px 2px 2px 2px;
         }
 
         .name { 
             font-weight: bold; 
-            font-size: 14px; 
+            font-size: 13px; 
             color: #f8fafc; 
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .series { 
-            font-size: 10px; 
+            font-size: 9.5px; 
             color: #94a3b8; 
-            line-height: 1.3;
-            margin-bottom: 6px;
+            line-height: 1.2;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .badge-rarity {
             display: inline-block;
             background: rgba(56, 189, 248, 0.15);
             color: #38bdf8;
-            font-size: 9px;
+            font-size: 8.5px;
             font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
             border: 1px solid rgba(56, 189, 248, 0.3);
             text-transform: uppercase;
         }
@@ -423,8 +435,6 @@
         </div>
         <div class="sidebar-menu">
             <a href="#" class="sidebar-item menu-item"><span>Database Cards</span> ➔</a>
-            <a href="#" class="sidebar-item menu-item"><span>API Documentation</span> ➔</a>
-            <a href="#" class="sidebar-item menu-item"><span>System Metrics</span> ➔</a>
         </div>
     </div>
 
@@ -432,7 +442,6 @@
     <div class="main-dashboard" id="mainDashboard">
         <div class="sticky-container">
             <div class="header">
-                <!-- Tombol Garis Tiga -->
                 <button class="menu-btn" onclick="toggleSidebar()">
                     <span></span>
                     <span></span>
@@ -470,7 +479,6 @@
             }, 600);
         });
 
-        // Fungsi Buka-Tutup Sidebar Menu
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');

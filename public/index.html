@@ -177,7 +177,7 @@
         /* Grid 2 Kolom */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        /* 🛠️ Desain Kartu Gaya Profil Modern (Terinspirasi dari referensi) */
+        /* Desain Kartu Gaya Profil Modern dengan Scroll Fade-In */
         .card { 
             background: linear-gradient(145deg, #162032 0%, #0f172a 100%); 
             border: 1px solid #334155; 
@@ -185,19 +185,21 @@
             padding: 10px; 
             text-align: center; 
             box-shadow: 0 6px 15px rgba(0,0,0,0.4); 
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.7s ease forwards;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Animasi Scroll Fade-In Observer */
+        .card.scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .card.scroll-animate.show {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .card img, .card video { 
@@ -319,8 +321,9 @@
                     grid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-size: 12px;">Tidak ada entitas ditemukan.</p>';
                     return;
                 }
-                grid.innerHTML = data.map((c, index) => `
-                    <div class="card" style="animation-delay: ${index * 0.08}s">
+                
+                grid.innerHTML = data.map((c) => `
+                    <div class="card scroll-animate">
                         ${c.isVideo 
                             ? `<video src="${c.image}" muted loop playsinline preload="metadata" onclick="this.paused ? this.play() : this.pause()" title="Klik untuk memutar/menjeda"></video>` 
                             : `<img src="${c.image}" alt="${c.name}">`}
@@ -331,6 +334,25 @@
                         </div>
                     </div>
                 `).join('');
+
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('show');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.scroll-animate').forEach(card => {
+                    observer.observe(card);
+                });
             })
             .catch(err => {
                 document.getElementById('card-grid').innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #f87171; font-size: 12px;">Gagal memuat arsip.</p>';

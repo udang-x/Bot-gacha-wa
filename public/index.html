@@ -2,11 +2,166 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elysium Archive | Web Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Elysium Archive | Dashboard</title>
     <style>
-        body { background-color: #0b0f19; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { 
+            background-color: #030305; 
+            color: #f8fafc; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-user-select: none;
+            user-select: none;
+        }
         
+        /* --- BACKGROUND GALAKSI CSS MURNI --- */
+        .galaxy-space {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            perspective: 1000px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.5s ease;
+        }
+
+        .galaxy-space.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .stars-layer-1 {
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            box-shadow: 
+                150px 200px #fff, 400px 100px #a3c2ff, 800px 300px #ffb3c6,
+                200px 600px #ffe9c4, 900px 700px #00ffff, 300px 400px #fff,
+                1000px 200px #a3c2ff, 500px 800px #ffb3c6, 50px 900px #fff,
+                750px 150px #ffe9c4, 120px 450px #00ffff, 650px 550px #a3c2ff;
+            position: absolute;
+            animation: rotateGalaxy 120s linear infinite;
+        }
+
+        .stars-layer-2 {
+            width: 3px;
+            height: 3px;
+            background: transparent;
+            box-shadow: 
+                300px 150px #ffb3c6, 700px 400px #fff, 150px 700px #00ffff,
+                850px 200px #ffe9c4, 450px 500px #a3c2ff, 950px 850px #fff,
+                250px 300px #ffb3c6, 600px 100px #a3c2ff, 100px 800px #fff;
+            position: absolute;
+            animation: rotateGalaxyReverse 180s linear infinite;
+        }
+
+        @keyframes rotateGalaxy {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.2); }
+        }
+
+        @keyframes rotateGalaxyReverse {
+            from { transform: rotate(360deg) scale(1.2); }
+            to { transform: rotate(0deg) scale(1); }
+        }
+
+        /* --- KONTROL TOMBOL POWER DI TENGAH --- */
+        .power-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            background-color: #030305;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .power-btn {
+            width: 90px;
+            height: 90px;
+            background: rgba(10, 10, 20, 0.8);
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .power-btn:active {
+            transform: scale(0.92);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.9), inset 0 0 25px rgba(0, 255, 255, 0.7);
+        }
+
+        .power-icon {
+            width: 35px;
+            height: 35px;
+            border: solid 3px #00ffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            position: relative;
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px #00ffff;
+            pointer-events: none;
+        }
+
+        .power-icon::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 13px;
+            width: 3px;
+            height: 18px;
+            background-color: #00ffff;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .label-text {
+            margin-top: 18px;
+            color: #00ffff;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        .power-wrapper.hidden {
+            opacity: 0;
+            transform: scale(2.5);
+            pointer-events: none;
+        }
+
+        /* --- DASHBOARD UTAMA ELYSIUM ARCHIVE --- */
+        .main-dashboard {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease 0.5s;
+            position: relative;
+            z-index: 10;
+            background-color: #0b0f19;
+            min-height: 100vh;
+        }
+
+        .main-dashboard.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* Header Estetik & Kompak */
         .header { background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); border-bottom: 1px solid #1e293b; padding: 15px 10px 10px 10px; text-align: center; }
         .header h1 { color: #38bdf8; font-size: 18px; margin: 0; letter-spacing: 1px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
@@ -19,12 +174,11 @@
         .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 11px; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .btn-toggle:hover { background: #38bdf8; color: #0b0f19; }
 
-        /* Grid 3 Kolom pas untuk 9 kartu di satu layar HP */
+        /* Grid 3 Kolom */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 6px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3); transition: transform 0.2s; }
         .card:hover { transform: translateY(-2px); border-color: #38bdf8; }
         
-        /* Ukuran Gambar & Video diperkecil agar pas 3 baris dalam 1 layar */
         .card img, .card video { width: 100%; height: 110px; object-fit: cover; border-radius: 4px; cursor: pointer; background: #0f172a; }
         
         .name { margin-top: 5px; font-weight: bold; font-size: 11px; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -32,23 +186,56 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🏛️ ELYSIUM ARCHIVE</h1>
-        <p class="subtitle">Direktori Database Entitas Multidimensi</p>
+
+    <!-- GERBANG TOMBOL POWER & GALAKSI -->
+    <div class="power-wrapper" id="powerWrapper">
+        <div class="power-btn" id="powerBtn">
+            <div class="power-icon"></div>
+        </div>
+        <div class="label-text">SYSTEM OFFLINE</div>
     </div>
 
-    <div class="container">
-        <!-- Panel Kontrol Penghemat Data -->
-        <div class="controls">
-            <button class="btn-toggle" id="toggleAutoplay" onclick="toggleAutoplayMode()">Mode Video: Klik untuk Putar</button>
+    <!-- BACKGROUND GALAKSI MURNI CSS -->
+    <div class="galaxy-space" id="galaxySpace">
+        <div class="stars-layer-1"></div>
+        <div class="stars-layer-2"></div>
+    </div>
+
+    <!-- DASHBOARD UTAMA ELYSIUM ARCHIVE -->
+    <div class="main-dashboard" id="mainDashboard">
+        <div class="header">
+            <h1>🏛️ ELYSIUM ARCHIVE</h1>
+            <p class="subtitle">Direktori Database Entitas Multidimensi</p>
         </div>
-        
-        <div class="grid" id="card-grid">
-            <p style="text-align: center; grid-column: 1 / -1; color: #94a3b8; font-size: 12px;">Memuat data dari terminal arsip...</p>
+
+        <div class="container">
+            <div class="controls">
+                <button class="btn-toggle" id="toggleAutoplay" onclick="toggleAutoplayMode()">Mode Video: Klik untuk Putar</button>
+            </div>
+            
+            <div class="grid" id="card-grid">
+                <p style="text-align: center; grid-column: 1 / -1; color: #94a3b8; font-size: 12px;">Memuat data dari terminal arsip...</p>
+            </div>
         </div>
     </div>
 
     <script>
+        // Logika Tombol Power & Transisi Galaksi
+        const powerBtn = document.getElementById('powerBtn');
+        const powerWrapper = document.getElementById('powerWrapper');
+        const galaxySpace = document.getElementById('galaxySpace');
+        const mainDashboard = document.getElementById('mainDashboard');
+
+        powerBtn.addEventListener('click', () => {
+            powerWrapper.classList.add('hidden');
+            galaxySpace.classList.add('active');
+            
+            setTimeout(() => {
+                mainDashboard.classList.add('show');
+            }, 600);
+        });
+
+        // Logika Dashboard Elysium Archive
         let isAutoplayActive = false;
 
         function toggleAutoplayMode() {

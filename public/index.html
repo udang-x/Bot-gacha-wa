@@ -165,7 +165,6 @@
             pointer-events: auto;
         }
 
-        /* Header & Kontrol Sticky di Atas */
         .sticky-container {
             position: sticky;
             top: 0;
@@ -173,9 +172,9 @@
             background-color: #0b0f19;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             width: 100%;
+            box-sizing: border-box;
         }
 
-        /* Header Rapi */
         .header { 
             background: linear-gradient(180deg, #1e293b 0%, #0b0f19 100%); 
             border-bottom: 1px solid #1e293b; 
@@ -183,9 +182,9 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            box-sizing: border-box;
         }
 
-        /* Tombol Garis Tiga */
         .menu-btn {
             background: #162032;
             border: 1px solid #334155;
@@ -328,17 +327,27 @@
             color: #38bdf8;
         }
 
-        /* Panel Kontrol */
         .controls { text-align: center; padding: 10px 0; background: #0b0f19; }
         .btn-toggle { background: #1e293b; border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-family: monospace; font-weight: bold; font-size: 11px; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .btn-toggle:hover { background: #38bdf8; color: #0b0f19; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 10px; box-sizing: border-box; }
+        /* 🛠️ Kontainer dan Grid disesuaikan agar tidak terpotong di kanan */
+        .container { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 8px; 
+            box-sizing: border-box; 
+        }
 
-        /* Grid 2 Kolom Rapi */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 8px; 
+            width: 100%;
+            box-sizing: border-box;
+        }
         
-        /* Kartu Profil Modern */
         .card { 
             background: linear-gradient(145deg, #162032 0%, #0f172a 100%); 
             border: 1px solid #334155; 
@@ -350,6 +359,7 @@
             flex-direction: column;
             justify-content: space-between;
             box-sizing: border-box;
+            width: 100%;
         }
 
         .card.scroll-animate {
